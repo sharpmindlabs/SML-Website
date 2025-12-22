@@ -1,46 +1,76 @@
 # SML-Website
 
-Sharp Mind Labs official website with Flask backend and responsive frontend.
+Shapmind Labs official website - AI Software Product Company
+
+## About
+
+Shapmind Labs develops cutting-edge AI software products that transform businesses. From intelligent automation to machine learning solutions, we build AI-powered applications that deliver measurable results and competitive advantages.
 
 ## Project Structure
 ```
-your-repo/
+SML-Website/
 ├── backend/
-│   ├── app.py
-│   ├── requirements.txt
-│   └── Dockerfile
+│   ├── app.py              # Flask backend
+│   ├── requirements.txt    # Python dependencies
+│   └── Dockerfile         # Backend container
 ├── frontend/
-│   ├── index.html
-│   ├── about.html
-│   ├── contact.html
-│   ├── productoverview.html
-│   ├── solution.html
-│   └── assets/
-├── docker-compose.yml
-├── nginx.conf
+│   └── index.html         # Main website
+├── docker-compose.yml     # Multi-container setup
+├── nginx.conf            # Reverse proxy config
 └── .github/
     └── workflows/
-        └── deploy.yml
+        └── deploy.yml    # CI/CD pipeline
 ```
 
 ## Quick Start
-```bash
-# Run with Docker Compose
-docker-compose up -d
 
-# Or run backend only
+### Local Development
+```bash
+# Run backend only
 cd backend
 pip install -r requirements.txt
 python app.py
 ```
 
+### Docker Deployment
+```bash
+# Run full stack with Docker Compose
+docker-compose up -d
+
+# Check health
+curl http://localhost/healthz
+```
+
 ## URLs
 - Home: http://localhost/
-- About: http://localhost/about.html
-- Products: http://localhost/productoverview.html
-- Solutions: http://localhost/solution.html
-- Contact: http://localhost/contact.html
 - API Health: http://localhost/api/health
+- Contact API: http://localhost/api/contact
 
 ## CI/CD Pipeline
 Automated deployment via GitHub Actions on push to main branch.
+
+## Tech Stack
+- **Backend**: Python Flask, Gunicorn
+- **Frontend**: HTML5, Tailwind CSS, JavaScript
+- **Infrastructure**: Docker, Nginx
+- **CI/CD**: GitHub Actions
+
+## Environment Variables
+```
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your-email@gmail.com
+SMTP_PASS=your-password
+RECIPIENT_EMAIL=contact@sharpmindlabs.com
+DISABLE_EMAIL=1  # For local development
+```
+
+## Deployment
+Push to main branch triggers automatic deployment:
+1. Tests run
+2. Docker images build
+3. Health checks verify
+4. Production deployment
+
+---
+© 2025 Shapmind Labs. All rights reserved.

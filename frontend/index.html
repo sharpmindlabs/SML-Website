@@ -1,721 +1,223 @@
 <!DOCTYPE html>
-<html class="dark scroll-smooth" lang="en"><head>
+<html class="dark scroll-smooth" lang="en">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Shapmind Labs | AI Software Products</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-    tailwind.config = {
-        darkMode: "class",
-        theme: {
-            extend: {
-                colors: {
-                    "primary": "#3b82f6",
-                    "primary-glow": "#60a5fa",
-                    "accent": "#00f0ff",
-                    "accent-glow": "rgba(0, 240, 255, 0.5)",
-                    "background-dark": "#020408", 
-                    "surface-dark": "#0a101a",
-                    "surface-glass": "rgba(255, 255, 255, 0.02)",
-                    "glass-border": "rgba(255, 255, 255, 0.08)",
-                },
-                fontFamily: {
-                    "display": ["Space Grotesk", "sans-serif"],
-                    "body": ["Inter", "sans-serif"],
-                },
-                backgroundImage: {
-                    'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-                    'mesh': 'radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0px, transparent 50%), radial-gradient(at 100% 0%, rgba(0, 240, 255, 0.1) 0px, transparent 50%)',
-                    'grid-pattern': "linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)",
-                    'cyber-grid': "linear-gradient(transparent 0%, rgba(59, 130, 246, 0.05) 2%, transparent 5%), linear-gradient(90deg, transparent 0%, rgba(59, 130, 246, 0.05) 2%, transparent 5%)",
-                    'noise': "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22 opacity=%220.05%22/%3E%3C/svg%3E')",
-                },
-                backgroundSize: {
-                    'grid': '40px 40px',
-                    'cyber': '60px 60px',
-                },
-                animation: {
-                    'float': 'float 6s ease-in-out infinite',
-                    'float-delayed': 'float 6s ease-in-out 3s infinite',
-                    'float-fast': 'float 4s ease-in-out infinite',
-                    'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    'blob': 'blob 10s infinite',
-                    'text-shimmer': 'text-shimmer 3s linear infinite',
-                    'scroll': 'scroll 30s linear infinite',
-                    'spin-slow': 'spin 15s linear infinite',
-                    'spin-slower': 'spin 25s linear infinite',
-                    'spin-reverse-slow': 'spin-reverse 20s linear infinite',
-                    'fade-in-up': 'fade-in-up 1s ease-out forwards',
-                    'shine': 'shine 1.5s ease-in-out infinite',
-                    'orbit': 'orbit 20s linear infinite',
-                    'scan': 'scan 4s ease-in-out infinite',
-                    'scan-fast': 'scan 2s ease-in-out infinite',
-                    'tilt': 'tilt 10s ease-in-out infinite',
-                    'hologram': 'hologram 3s infinite',
-                    'glitch': 'glitch 1s linear infinite',
-                },
-                keyframes: {
-                    float: {
-                        '0%, 100%': { transform: 'translateY(0)' },
-                        '50%': { transform: 'translateY(-20px)' },
-                    },
-                    blob: {
-                        '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                        '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                        '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-                        '100%': { transform: 'translate(0px, 0px) scale(1)' },
-                    },
-                    'text-shimmer': {
-                        '0%': { backgroundPosition: '0% 50%' },
-                        '100%': { backgroundPosition: '100% 50%' },
-                    },
-                    scroll: {
-                        '0%': { transform: 'translateX(0)' },
-                        '100%': { transform: 'translateX(-50%)' },
-                    },
-                    'fade-in-up': {
-                        '0%': { opacity: '0', transform: 'translateY(20px)' },
-                        '100%': { opacity: '1', transform: 'translateY(0)' },
-                    },
-                    shine: {
-                        '0%': { left: '-100%' },
-                        '100%': { left: '200%' }
-                    },
-                    'spin-reverse': {
-                        '0%': { transform: 'rotate(360deg)' },
-                        '100%': { transform: 'rotate(0deg)' }
-                    },
-                    orbit: {
-                        '0%': { transform: 'rotate(0deg) translateX(150px) rotate(0deg)' },
-                        '100%': { transform: 'rotate(360deg) translateX(150px) rotate(-360deg)' }
-                    },
-                    scan: {
-                        '0%': { top: '-20%', opacity: '0' },
-                        '50%': { opacity: '1' },
-                        '100%': { top: '120%', opacity: '0' }
-                    },
-                    tilt: {
-                        '0%, 100%': { transform: 'perspective(1000px) rotateX(5deg) rotateY(5deg)' },
-                        '50%': { transform: 'perspective(1000px) rotateX(-5deg) rotateY(-5deg)' }
-                    },
-                    hologram: {
-                        '0%, 100%': { opacity: '0.5' },
-                        '50%': { opacity: '0.8', textShadow: '0 0 10px #00f0ff' }
-                    },
-                    glitch: {
-                        '2%, 64%': { transform: 'translate(2px,0) skew(0deg)' },
-                        '4%, 60%': { transform: 'translate(-2px,0) skew(0deg)' },
-                        '62%': { transform: 'translate(0,0) skew(5deg)' },
-                    }
-                }
+<script>
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                "primary": "#3b82f6",
+                "primary-glow": "#60a5fa",
+                "accent": "#00f0ff",
+                "background-dark": "#020408", 
+                "surface-dark": "#0a101a",
             },
+            fontFamily: {
+                "display": ["Space Grotesk", "sans-serif"],
+                "body": ["Inter", "sans-serif"],
+            },
+            animation: {
+                'float': 'float 6s ease-in-out infinite',
+                'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                'fade-in-up': 'fade-in-up 1s ease-out forwards',
+            },
+            keyframes: {
+                float: {
+                    '0%, 100%': { transform: 'translateY(0)' },
+                    '50%': { transform: 'translateY(-20px)' },
+                },
+                'fade-in-up': {
+                    '0%': { opacity: '0', transform: 'translateY(20px)' },
+                    '100%': { opacity: '1', transform: 'translateY(0)' },
+                }
+            }
         },
-    }
+    },
+}
 </script>
-<style type="text/tailwindcss">
-    @layer utilities {
-        .text-glow {
-            text-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
-        }
-        .text-glow-accent {
-            text-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
-        }
-        .glass-panel {
-            @apply bg-surface-glass backdrop-blur-2xl border border-t-white/10 border-l-white/10 border-b-black/20 border-r-black/20 shadow-[0_8px_32px_rgba(0,0,0,0.5)] relative;
-        }
-        .glass-panel::before {
-            content: '';
-            @apply absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-[inherit] pointer-events-none;
-        }
-        .glass-card-hover {
-            @apply transition-all duration-500 hover:bg-white/5 hover:border-t-white/30 hover:shadow-[0_0_80px_rgba(59,130,246,0.15)] relative overflow-hidden;
-        }
-        .glass-card-hover::after {
-            content: '';
-            @apply absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-700 pointer-events-none;
-        }
-        .mask-gradient-b {
-            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
-        }
-        .mask-gradient-x {
-            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-        }
-        .perspective-2000 {
-            perspective: 2000px;
-        }
-        .perspective-1000 {
-            perspective: 1000px;
-        }
-        .perspective-500 {
-            perspective: 500px;
-        }
-        .transform-style-3d {
-            transform-style: preserve-3d;
-        }
-        .backface-hidden {
-            backface-visibility: hidden;
-        }
-        .rotate-x-12 {
-            transform: rotateX(12deg);
-        }
-        .rotate-y-12 {
-            transform: rotateY(12deg);
-        }
-        .rotate-x-60 {
-            transform: rotateX(60deg);
-        }
-        .translate-z-10 {
-            transform: translateZ(10px);
-        }
-        .translate-z-20 {
-            transform: translateZ(20px);
-        }
-        .translate-z-30 {
-            transform: translateZ(30px);
-        }
-        .translate-z-50 {
-            transform: translateZ(50px);
-        }
-        .neon-border {
-            box-shadow: 0 0 5px theme('colors.primary'), 0 0 10px theme('colors.primary');
-        }
-        .cursor-glow {
-            box-shadow: 0 0 50px 20px rgba(59, 130, 246, 0.2);
-        }
-    }
-    html {
-        scroll-behavior: smooth;
-    }
-    body {
-        cursor: crosshair;
-        background-color: #020408;
-    }
-    ::-webkit-scrollbar {
-        width: 4px;
-    }
-    ::-webkit-scrollbar-track {
-        background: #020408;
-    }
-    ::-webkit-scrollbar-thumb {
-        background: linear-gradient(to bottom, #3b82f6, #00f0ff);
-        border-radius: 2px;
-    }
-    ::selection {
-        background: rgba(0, 240, 255, 0.2);
-        color: #fff;
-        text-shadow: 0 0 10px #00f0ff;
-    }
-    .scene-floor {
-        transform: perspective(1000px) rotateX(70deg) scale(3);
-        background-image: linear-gradient(rgba(59, 130, 246, 0.2) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(59, 130, 246, 0.2) 1px, transparent 1px);
-        background-size: 80px 80px;
-        position: absolute;
-        width: 200%;
-        height: 200%;
-        top: -50%;
-        left: -50%;
-        animation: grid-move 15s linear infinite;
-        mask-image: radial-gradient(circle at center, black 0%, transparent 60%);
-    }
-    .scene-ceiling {
-        transform: perspective(1000px) rotateX(-70deg) scale(3);
-        background-image: linear-gradient(rgba(0, 240, 255, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 240, 255, 0.1) 1px, transparent 1px);
-        background-size: 120px 120px;
-        position: absolute;
-        width: 200%;
-        height: 200%;
-        top: -100%;
-        left: -50%;
-        animation: grid-move-reverse 20s linear infinite;
-        mask-image: radial-gradient(circle at center, black 0%, transparent 50%);
-        pointer-events: none;
-    }
-    @keyframes grid-move {
-        0% { transform: perspective(1000px) rotateX(70deg) scale(3) translateY(0); }
-        100% { transform: perspective(1000px) rotateX(70deg) scale(3) translateY(80px); }
-    }
-    @keyframes grid-move-reverse {
-        0% { transform: perspective(1000px) rotateX(-70deg) scale(3) translateY(0); }
-        100% { transform: perspective(1000px) rotateX(-70deg) scale(3) translateY(-120px); }
-    }
-</style>
 <style>
-    .logo-font {
-        font-family: 'Acherus Militant', 'Space Grotesk', 'Rajdhani', 'Inter', sans-serif;
-        font-weight: 700;
-        letter-spacing: 0.02em;
-    }
+.glass-panel {
+    background: rgba(10, 14, 23, 0.7);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.text-glow {
+    text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
 </style>
-<link rel="icon" href="Sharpmind-Logo (1).svg" type="image/svg+xml"/>
 </head>
-<body class="bg-background-dark text-white font-body overflow-x-hidden antialiased selection:bg-accent selection:text-black">
-<nav class="fixed top-0 left-0 right-0 z-50 flex w-full items-center justify-between border-b border-white/5 bg-[#020408]/60 px-6 py-4 backdrop-blur-xl transition-all duration-300 hover:bg-[#020408]/80">
-<div class="flex items-center gap-3 group cursor-pointer relative perspective-1000">
-<div class="absolute -inset-6 bg-primary/20 opacity-0 group-hover:opacity-100 blur-3xl transition-opacity duration-700 rounded-full"></div>
-<div class="relative flex size-10 items-center justify-center rounded-lg bg-white/5 border border-white/10 text-primary overflow-hidden group-hover:border-accent/50 transition-all duration-500 group-hover:scale-110 group-hover:rotate-[360deg] shadow-[0_0_20px_rgba(59,130,246,0.3)] transform-style-3d">
-<img src="Sharpmind-Logo (1).svg" alt="SharpMind Labs" class="relative z-10 w-8 h-8 animate-pulse-slow translate-z-10 filter brightness-0 invert contrast-125 opacity-95 group-hover:brightness-100 group-hover:invert-0 transition-all duration-300 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
-<div class="absolute inset-0 bg-gradient-to-tr from-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-</div>
-<div class="flex flex-col transform-style-3d group-hover:translate-x-2 transition-transform duration-500">
-<span class="text-lg font-bold tracking-tight text-white font-display leading-none group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-accent transition-all text-glow translate-z-10 logo-font">Shapmind</span>
-<span class="text-[10px] uppercase tracking-[0.2em] text-gray-500 group-hover:text-accent transition-colors translate-z-10 logo-font">Labs</span>
-</div>
-</div>
-<div class="flex items-center justify-center flex-1">
-<div class="hidden items-center gap-2 rounded-full bg-white/5 border border-white/5 p-1.5 px-2 backdrop-blur-2xl md:flex shadow-[0_0_20px_rgba(0,0,0,0.5)] transform-style-3d hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all duration-500 hover:scale-105">
-<a class="px-5 py-2 text-xs font-medium uppercase tracking-wider text-white hover:text-white hover:bg-white/5 rounded-full transition-all relative group overflow-hidden" href="index.html">
-<span class="relative z-10 group-hover:translate-x-1 transition-transform duration-300 block">Home</span>
-<div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
-<div class="absolute bottom-0 left-0 h-[1px] w-full bg-primary/50 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 delay-75"></div>
-</a>
-<a class="px-5 py-2 text-xs font-medium uppercase tracking-wider text-gray-400 hover:text-white hover:bg-white/5 rounded-full transition-all relative group overflow-hidden" href="productoverview.html">
-<span class="relative z-10 group-hover:translate-x-1 transition-transform duration-300 block">Product</span>
-<div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 ease-out delay-75"></div>
-<div class="absolute bottom-0 left-0 h-[1px] w-full bg-primary/50 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 delay-100"></div>
-</a>
-<a class="px-5 py-2 text-xs font-medium uppercase tracking-wider text-gray-400 hover:text-white hover:bg-white/5 rounded-full transition-all relative group overflow-hidden" href="solution.html">
-<span class="relative z-10 group-hover:translate-x-1 transition-transform duration-300 block">Solutions</span>
-<div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 ease-out delay-150"></div>
-<div class="absolute bottom-0 left-0 h-[1px] w-full bg-primary/50 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 delay-200"></div>
-</a>
-<a class="px-5 py-2 text-xs font-medium uppercase tracking-wider text-gray-400 hover:text-white hover:bg-white/5 rounded-full transition-all relative group overflow-hidden" href="about.html">
-<span class="relative z-10 group-hover:translate-x-1 transition-transform duration-300 block">About</span>
-<div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 ease-out delay-150"></div>
-<div class="absolute bottom-0 left-0 h-[1px] w-full bg-primary/50 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 delay-200"></div>
-</a>
-<a class="px-5 py-2 text-xs font-medium uppercase tracking-wider text-gray-400 hover:text-white hover:bg-white/5 rounded-full transition-all relative group overflow-hidden" href="contact.html">
-<span class="relative z-10 group-hover:translate-x-1 transition-transform duration-300 block">Contact</span>
-<div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 ease-out delay-150"></div>
-<div class="absolute bottom-0 left-0 h-[1px] w-full bg-primary/50 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 delay-200"></div>
-</a>
-</div>
-</div>
-<div class="flex items-center gap-4">
-<button onclick="location.href='contact.html'" class="hidden group relative overflow-hidden rounded-full bg-white text-black px-7 py-3 text-xs font-bold uppercase tracking-wider transition-all hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] md:block active:scale-95">
-<span class="relative z-10 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-black group-hover:to-blue-900 transition-colors">Get Access</span>
-<div class="absolute inset-0 bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 opacity-0 transition-opacity group-hover:opacity-100 animate-text-shimmer bg-[length:200%_auto]"></div>
-<div class="absolute inset-0 bg-white mix-blend-overlay opacity-0 group-hover:opacity-50"></div>
-<div class="absolute -top-10 -left-10 w-20 h-20 bg-white blur-xl group-hover:animate-float"></div>
-</button>
-</div>
-</nav>
-<header class="relative flex min-h-screen flex-col items-center justify-center overflow-hidden pt-20 perspective-2000" id="hero">
-<div class="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden">
-<div class="scene-floor opacity-40"></div>
-<div class="scene-ceiling opacity-20"></div>
-<div class="absolute top-[-20%] left-[-10%] w-[70%] h-[70%] bg-primary/20 rounded-full blur-[150px] animate-blob mix-blend-screen"></div>
-<div class="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-accent/15 rounded-full blur-[150px] animate-blob animation-delay-2000 mix-blend-screen"></div>
-<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] border border-white/5 rounded-full animate-spin-slow opacity-30 transform-style-3d shadow-[0_0_100px_rgba(59,130,246,0.1)]">
-<div class="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-4 bg-primary rounded-full shadow-[0_0_30px_#3b82f6] animate-pulse-fast"></div>
-</div>
-<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] border border-white/10 rounded-full animate-spin-reverse-slow opacity-40 transform-style-3d border-dashed">
-<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-3 h-3 bg-accent rounded-full shadow-[0_0_30px_#00f0ff] animate-pulse"></div>
-</div>
-<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-radial from-primary/10 to-transparent rounded-full animate-pulse-slow mix-blend-screen"></div>
-<div class="h-full w-full bg-cover bg-center bg-no-repeat opacity-20 mix-blend-screen scale-110 motion-safe:animate-[pulse_8s_infinite]" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAK0YYOy__tVs7SmWuVpIoaqHv70OZU9TIGumo19BSuXjtTzktVLRz9ZbK0QZ03OAHdbm3ckCthGlR7RMAgZzuwMuwI8p_BgbMD6mDc34y8ntXt6eU4wGkLkjLvUkfXxLhwGGl-XBsv62ZrBQJYwLS4ztt_8wycrF9Wac4mhSq55LGeUV9IOAizVWQmo2vy4BnHQTDhLdM9wf7y19vJDU6-uJrlJYYJ45MzeSED3bHkQzH_CbfYOHUFTfkObLOyRDLzJbenSeoWrSAe'); filter: hue-rotate(15deg) contrast(1.3) saturate(0) brightness(1.2);"></div>
-<div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#020408]/60 to-[#020408]"></div>
-<div class="absolute inset-0 bg-noise opacity-[0.03] mix-blend-overlay"></div>
-<div class="absolute top-1/4 right-1/4 w-1 h-1 bg-white rounded-full animate-float opacity-80 shadow-[0_0_15px_white]"></div>
-<div class="absolute bottom-1/3 left-1/3 w-1.5 h-1.5 bg-accent rounded-full animate-float-delayed opacity-80 shadow-[0_0_15px_#00f0ff]"></div>
-<div class="absolute top-1/3 left-1/4 w-1 h-1 bg-primary rounded-full animate-float-fast opacity-60 shadow-[0_0_15px_#3b82f6]"></div>
-</div>
-<div class="absolute top-[25%] left-5 md:left-20 w-72 glass-panel p-6 rounded-2xl animate-fade-in-up md:opacity-90 lg:block hover:scale-105 transition-all duration-700 cursor-help z-20 transform-style-3d hover:rotate-x-12 hover:rotate-y-6 perspective-1000 group shadow-[0_20px_50px_rgba(0,0,0,0.5)]" style="animation-delay: 0.5s;">
-<div class="absolute -inset-[1px] bg-gradient-to-r from-primary via-white/20 to-accent rounded-2xl opacity-0 group-hover:opacity-30 blur-md transition-opacity duration-700 -z-10"></div>
-<div class="flex items-center gap-3 mb-4 translate-z-10">
-<div class="relative w-3 h-3">
-<div class="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-75"></div>
-<div class="relative w-3 h-3 rounded-full bg-green-500 shadow-[0_0_15px_#22c55e] animate-pulse"></div>
-</div>
-<span class="text-xs font-mono text-gray-300 font-bold tracking-widest group-hover:text-white transition-colors">SYSTEM STATUS</span>
-</div>
-<div class="space-y-4 translate-z-20">
-<div class="relative h-2 w-full bg-white/5 rounded-full overflow-hidden border border-white/5">
-<div class="h-full w-3/4 bg-gradient-to-r from-primary via-accent to-primary rounded-full animate-[shine_2s_infinite]"></div>
-<div class="absolute top-0 right-0 h-full w-[2px] bg-white blur-[2px] animate-[shine_2s_infinite]"></div>
-</div>
-<div class="flex justify-between text-[10px] text-gray-400 font-mono">
-<span class="animate-pulse text-accent drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]">Node 841.2 Active</span>
-<span class="text-white">99.8% Load</span>
-</div>
-<div class="grid grid-cols-4 gap-1 h-8 transform-style-3d">
-<div class="bg-primary/20 rounded-sm animate-pulse border border-primary/10 group-hover:bg-primary/40 transition-colors" style="animation-delay: 0.1s"></div>
-<div class="bg-primary/30 rounded-sm animate-pulse border border-primary/10 group-hover:bg-primary/50 transition-colors" style="animation-delay: 0.2s"></div>
-<div class="bg-primary/40 rounded-sm animate-pulse border border-primary/10 group-hover:bg-primary/60 transition-colors" style="animation-delay: 0.3s"></div>
-<div class="bg-primary/50 rounded-sm animate-pulse border border-primary/10 group-hover:bg-primary/70 transition-colors shadow-[0_0_10px_rgba(59,130,246,0.3)]" style="animation-delay: 0.4s"></div>
-</div>
-</div>
-</div>
-<div class="absolute bottom-[20%] right-5 md:right-20 w-64 glass-panel p-5 rounded-2xl animate-fade-in-up md:opacity-90 lg:block z-20 transition-all duration-700 transform-style-3d hover:-rotate-y-12 hover:rotate-x-6 perspective-1000 group shadow-[0_20px_50px_rgba(0,0,0,0.5)]" style="animation-delay: 0.8s;">
-<div class="absolute -top-10 -right-10 w-24 h-24 bg-accent/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
-<div class="flex justify-between items-center text-xs font-mono text-accent mb-3 translate-z-10">
-<span class="text-white font-bold tracking-wide">New Block Mined</span>
-<span class="material-symbols-outlined text-[18px] animate-spin-slow text-accent drop-shadow-[0_0_8px_rgba(0,240,255,0.8)]">verified</span>
-</div>
-<div class="text-[10px] text-gray-400 font-mono break-all group relative cursor-copy p-3 bg-black/40 rounded-lg border border-white/5 hover:border-accent/30 transition-all translate-z-20 hover:scale-105">
-<span class="group-hover:text-white transition-colors relative z-10">0x71...8F2A...9C1</span>
-<div class="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 animate-pulse rounded-lg"></div>
-<div class="absolute top-0 left-0 w-[2px] h-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-</div>
-</div>
-<div class="relative z-30 flex w-full max-w-[1400px] flex-col items-center px-6 text-center md:px-12 mt-10 perspective-1000">
-<div class="group mb-10 inline-flex cursor-pointer items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 backdrop-blur-md transition-all hover:bg-white/10 hover:border-primary/50 hover:shadow-[0_0_40px_rgba(59,130,246,0.4)] animate-fade-in-up hover:scale-105 duration-300 transform-style-3d" style="animation-delay: 0.2s;">
-<span class="relative flex h-2 w-2 translate-z-10">
-<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
-<span class="relative inline-flex rounded-full h-2 w-2 bg-accent shadow-[0_0_15px_#00f0ff]"></span>
-</span>
-<span class="text-xs font-semibold uppercase tracking-widest text-gray-300 group-hover:text-white transition-colors translate-z-10">AI Software Products — Ready to Deploy</span>
-<span class="material-symbols-outlined text-[16px] text-gray-500 group-hover:translate-x-1 transition-transform group-hover:text-primary translate-z-10">arrow_forward</span>
-</div>
-<h1 class="mx-auto max-w-6xl text-6xl font-bold leading-[0.85] tracking-tighter text-white md:text-8xl lg:text-9xl font-display mb-8 animate-fade-in-up transform-style-3d group perspective-500" style="animation-delay: 0.4s;">
-<span class="block hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-b hover:from-white hover:to-primary-glow transition-all duration-700 transform hover:scale-[1.02] hover:rotate-x-12 cursor-default drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)]" style="text-shadow: 0 0 50px rgba(59,130,246,0.1);">AI-Powered</span>
-<span class="relative block bg-gradient-to-r from-white via-gray-200 to-gray-500 bg-clip-text text-transparent animate-text-shimmer bg-[length:200%_auto] pb-4 hover:tracking-wide transition-all duration-1000">
-                Software Products.
-                <div class="absolute -bottom-2 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-50 blur-sm animate-pulse"></div>
-<div class="absolute -bottom-2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white to-transparent opacity-30"></div>
-</span>
-</h1>
-<h2 class="mx-auto mt-6 max-w-2xl text-lg font-light leading-relaxed text-gray-400 md:text-xl font-body animate-fade-in-up drop-shadow-lg" style="animation-delay: 0.6s;">
-            We build intelligent software products that solve real business problems. From AI-powered analytics to automated workflows, our solutions drive efficiency and innovation across industries.
-        </h2>
-<div class="mt-12 flex flex-col gap-5 sm:flex-row sm:gap-6 w-full justify-center animate-fade-in-up perspective-1000" style="animation-delay: 0.8s;">
-<button onclick="location.href='productoverview.html'" class="group relative flex min-w-[200px] items-center justify-center gap-3 overflow-hidden rounded-full bg-white text-black px-8 py-4 text-sm font-bold uppercase tracking-widest transition-all hover:scale-110 hover:shadow-[0_0_80px_rgba(255,255,255,0.3)] active:scale-95 duration-500 z-10 transform-style-3d">
-<span class="relative z-10 translate-z-10">Explore Products</span>
-<span class="material-symbols-outlined relative z-10 text-[20px] transition-transform group-hover:-rotate-45 group-hover:text-primary translate-z-10">arrow_outward</span>
-<div class="absolute inset-0 bg-gradient-to-r from-gray-100 to-white opacity-0 transition-opacity group-hover:opacity-100"></div>
-<div class="absolute inset-0 rounded-full ring-2 ring-white/50 opacity-0 group-hover:opacity-100 animate-pulse"></div>
-<div class="absolute -inset-4 bg-white/20 blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-</button>
-<button onclick="location.href='solution.html'" class="group flex min-w-[200px] items-center justify-center gap-3 rounded-full border border-white/20 bg-white/5 px-8 py-4 text-sm font-bold uppercase tracking-widest text-white backdrop-blur-md transition-all hover:border-white/50 hover:bg-white/10 hover:shadow-[0_0_50px_rgba(255,255,255,0.1)] active:scale-95 duration-300 z-10 overflow-hidden relative">
-<span class="relative z-10">View Solutions</span>
-<span class="material-symbols-outlined text-[20px] text-gray-400 transition-colors group-hover:text-white group-hover:translate-x-1 relative z-10">chevron_right</span>
-<div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-[shine_1s_ease-in-out]"></div>
-</button>
-</div>
-</div>
-<div class="absolute bottom-10 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center gap-4 opacity-0 animate-fade-in-up" style="animation-delay: 1.2s;">
-<div class="h-20 w-[1px] bg-gradient-to-b from-transparent via-gray-500 to-transparent overflow-hidden relative">
-<div class="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-transparent to-white animate-scan"></div>
-</div>
-<span class="text-[10px] uppercase tracking-[0.3em] text-gray-500 animate-pulse group-hover:text-white transition-colors">Scroll to Initialize</span>
-</div>
-</header>
-<section class="relative z-20 border-y border-white/5 bg-[#020408] overflow-hidden group">
-<div class="absolute inset-0 bg-primary/5 blur-3xl opacity-50 group-hover:opacity-80 transition-opacity duration-700"></div>
-<div class="absolute inset-0 bg-grid-pattern opacity-10 animate-pulse-slow"></div>
-<div class="absolute inset-0 bg-noise opacity-[0.05]"></div>
-<div class="mx-auto max-w-7xl px-6 py-12 md:px-12 flex flex-col md:flex-row items-center gap-8 relative z-10">
-<p class="text-xs font-semibold uppercase tracking-widest text-gray-600 whitespace-nowrap group-hover:text-white transition-colors text-shadow">Trusted by enterprises</p>
-<div class="w-full overflow-hidden mask-gradient-x">
-<div class="flex items-center gap-16 w-max animate-scroll hover:pause">
-<div class="flex items-center gap-16">
-<div class="flex items-center gap-3 group/logo cursor-pointer opacity-40 hover:opacity-100 transition-all hover:scale-110 duration-500 filter grayscale hover:grayscale-0">
-<span class="material-symbols-outlined text-4xl group-hover/logo:text-primary transition-colors drop-shadow-[0_0_15px_rgba(59,130,246,0.6)] animate-pulse-slow">analytics</span>
-<span class="text-xl font-bold tracking-tight font-display text-white">Microsoft</span>
-</div>
-<div class="flex items-center gap-3 group/logo cursor-pointer opacity-40 hover:opacity-100 transition-all hover:scale-110 duration-500 filter grayscale hover:grayscale-0">
-<span class="material-symbols-outlined text-4xl group-hover/logo:text-blue-500 transition-colors drop-shadow-[0_0_15px_rgba(59,130,246,0.6)]">cloud</span>
-<span class="text-xl font-bold tracking-tight font-display text-white">AWS</span>
-</div>
-<div class="flex items-center gap-3 group/logo cursor-pointer opacity-40 hover:opacity-100 transition-all hover:scale-110 duration-500 filter grayscale hover:grayscale-0">
-<span class="material-symbols-outlined text-4xl group-hover/logo:text-white transition-colors drop-shadow-[0_0_15px_rgba(255,255,255,0.6)]">psychology</span>
-<span class="text-xl font-bold tracking-tight font-display text-white">Google</span>
-</div>
-<div class="flex items-center gap-3 group/logo cursor-pointer opacity-40 hover:opacity-100 transition-all hover:scale-110 duration-500 filter grayscale hover:grayscale-0">
-<span class="material-symbols-outlined text-4xl group-hover/logo:text-green-500 transition-colors drop-shadow-[0_0_15px_rgba(34,197,94,0.6)]">smart_toy</span>
-<span class="text-xl font-bold tracking-tight font-display text-white">IBM</span>
-</div>
-<div class="flex items-center gap-3 group/logo cursor-pointer opacity-40 hover:opacity-100 transition-all hover:scale-110 duration-500 filter grayscale hover:grayscale-0">
-<span class="material-symbols-outlined text-4xl group-hover/logo:text-red-500 transition-colors drop-shadow-[0_0_15px_rgba(239,68,68,0.6)]">auto_awesome</span>
-<span class="text-xl font-bold tracking-tight font-display text-white">Tesla</span>
-</div>
-<div class="flex items-center gap-3 group/logo cursor-pointer opacity-40 hover:opacity-100 transition-all hover:scale-110 duration-500 filter grayscale hover:grayscale-0">
-<span class="material-symbols-outlined text-4xl group-hover/logo:text-green-400 transition-colors drop-shadow-[0_0_15px_rgba(74,222,128,0.6)]">language</span>
-<span class="text-xl font-bold tracking-tight font-display text-white">Nvidia</span>
-</div>
-</div>
-<div class="flex items-center gap-16">
-<div class="flex items-center gap-3 group/logo cursor-pointer opacity-40 hover:opacity-100 transition-all hover:scale-110 duration-500 filter grayscale hover:grayscale-0">
-<span class="material-symbols-outlined text-4xl group-hover/logo:text-primary transition-colors">analytics</span>
-<span class="text-xl font-bold tracking-tight font-display text-white">Microsoft</span>
-</div>
-<div class="flex items-center gap-3 group/logo cursor-pointer opacity-40 hover:opacity-100 transition-all hover:scale-110 duration-500 filter grayscale hover:grayscale-0">
-<span class="material-symbols-outlined text-4xl group-hover/logo:text-blue-500 transition-colors">cloud</span>
-<span class="text-xl font-bold tracking-tight font-display text-white">AWS</span>
-</div>
-<div class="flex items-center gap-3 group/logo cursor-pointer opacity-40 hover:opacity-100 transition-all hover:scale-110 duration-500 filter grayscale hover:grayscale-0">
-<span class="material-symbols-outlined text-4xl group-hover/logo:text-white transition-colors">psychology</span>
-<span class="text-xl font-bold tracking-tight font-display text-white">Google</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="relative z-20 bg-[#020408] py-32 overflow-visible perspective-2000" id="ecosystem">
-<div class="absolute top-0 right-0 w-full h-full bg-gradient-radial from-blue-900/10 to-transparent opacity-50 blur-3xl pointer-events-none animate-pulse-slow mix-blend-screen"></div>
-<div class="absolute bottom-0 left-0 w-2/3 h-2/3 bg-gradient-radial from-purple-900/10 to-transparent opacity-40 blur-3xl pointer-events-none"></div>
-<div class="absolute top-20 left-1/4 w-[1px] h-[500px] bg-gradient-to-b from-transparent via-white/20 to-transparent rotate-45 transform origin-top blur-sm animate-pulse"></div>
-<div class="mx-auto max-w-7xl px-6 md:px-12 relative z-10">
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-<div class="group perspective-1000">
-<span class="inline-block py-1 px-3 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider mb-6 hover:bg-primary/20 transition-all cursor-default shadow-[0_0_15px_rgba(59,130,246,0.2)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] hover:scale-105">AI Product Suite</span>
-<h3 class="text-4xl md:text-6xl font-bold text-white font-display mb-8 leading-tight transform-style-3d group-hover:rotate-x-12 transition-transform duration-700 origin-left">
-                    Intelligent <br/>
-<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary animate-text-shimmer bg-[length:200%_auto] filter drop-shadow-[0_0_15px_rgba(59,130,246,0.6)]">Software Solutions.</span>
-</h3>
-<p class="text-gray-400 text-lg leading-relaxed mb-8 group-hover:text-gray-300 transition-colors duration-500 max-w-lg">
-                    We develop AI-powered software products that automate complex business processes, analyze data intelligently, and deliver measurable results. From machine learning models to intelligent automation platforms.
-                </p>
-<div class="space-y-6">
-<div class="group/item flex gap-6 p-6 rounded-xl transition-all duration-500 hover:bg-white/5 border border-transparent hover:border-white/10 hover:shadow-[0_0_40px_rgba(59,130,246,0.15)] cursor-pointer transform hover:translate-x-4 relative overflow-hidden">
-<div class="absolute inset-0 bg-gradient-to-r from-white/5 to-transparent -translate-x-full group-hover/item:animate-[shine_1s_ease-in-out]"></div>
-<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-surface-dark border border-white/10 text-primary group-hover/item:scale-110 group-hover/item:rotate-[360deg] transition-all duration-500 shadow-lg shadow-black group-hover/item:border-primary/50 group-hover/item:shadow-[0_0_20px_#3b82f6] relative z-10">
+<body class="bg-background-dark text-white font-body overflow-x-hidden antialiased">
+
+<nav class="fixed top-0 left-0 right-0 z-50 flex w-full items-center justify-between border-b border-white/5 bg-[#020408]/60 px-6 py-4 backdrop-blur-xl">
+<div class="flex items-center gap-3">
+<div class="flex size-10 items-center justify-center rounded-lg bg-white/5 border border-white/10 text-primary">
 <span class="material-symbols-outlined">psychology</span>
 </div>
-<div class="relative z-10">
-<h4 class="text-xl font-bold text-white mb-2 group-hover/item:text-primary transition-colors text-glow">Predictive Analytics</h4>
-<p class="text-sm text-gray-500 group-hover/item:text-gray-300 transition-colors">AI models that forecast trends and optimize business decisions.</p>
+<div class="flex flex-col">
+<span class="text-lg font-bold tracking-tight text-white font-display">Shapmind</span>
+<span class="text-[10px] uppercase tracking-[0.2em] text-gray-500">Labs</span>
 </div>
 </div>
-<div class="group/item flex gap-6 p-6 rounded-xl transition-all duration-500 hover:bg-white/5 border border-transparent hover:border-white/10 hover:shadow-[0_0_40px_rgba(59,130,246,0.15)] cursor-pointer transform hover:translate-x-4 relative overflow-hidden">
-<div class="absolute inset-0 bg-gradient-to-r from-white/5 to-transparent -translate-x-full group-hover/item:animate-[shine_1s_ease-in-out]"></div>
-<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-surface-dark border border-white/10 text-primary group-hover/item:scale-110 group-hover/item:rotate-[-360deg] transition-all duration-500 shadow-lg shadow-black group-hover/item:border-primary/50 group-hover/item:shadow-[0_0_20px_#3b82f6] relative z-10">
-<span class="material-symbols-outlined">deployed_code</span>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-white hover:text-primary transition-colors" href="#home">Home</a>
+<a class="text-gray-400 hover:text-white transition-colors" href="#products">Products</a>
+<a class="text-gray-400 hover:text-white transition-colors" href="#solutions">Solutions</a>
+<a class="text-gray-400 hover:text-white transition-colors" href="#about">About</a>
+<a class="text-gray-400 hover:text-white transition-colors" href="#contact">Contact</a>
 </div>
-<div class="relative z-10">
-<h4 class="text-xl font-bold text-white mb-2 group-hover/item:text-primary transition-colors text-glow">Process Automation</h4>
-<p class="text-sm text-gray-500 group-hover/item:text-gray-300 transition-colors">Intelligent workflows that reduce manual tasks by 80%.</p>
+<button class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+Get Started
+</button>
+</nav>
+
+<header class="relative flex min-h-screen flex-col items-center justify-center overflow-hidden pt-20" id="home">
+<div class="absolute inset-0 z-0">
+<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[100px] animate-float"></div>
+<div class="absolute bottom-1/3 right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-[120px] animate-float"></div>
 </div>
+
+<div class="relative z-10 text-center max-w-6xl px-6">
+<div class="mb-8 animate-fade-in-up">
+<span class="inline-block py-1 px-3 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider">AI Software Innovation</span>
 </div>
-</div>
-</div>
-<div class="relative h-[650px] w-full perspective-1000 group transform-style-3d hover:scale-105 transition-transform duration-1000">
-<div class="absolute top-1/2 left-1/2 w-[550px] h-[550px] -translate-x-1/2 -translate-y-1/2 border border-dashed border-white/10 rounded-full animate-spin-slow pointer-events-none -z-10"></div>
-<div class="absolute top-1/2 left-1/2 w-[400px] h-[400px] -translate-x-1/2 -translate-y-1/2 bg-primary/5 blur-3xl rounded-full animate-pulse-slow -z-20"></div>
-<div class="absolute top-0 right-0 w-72 md:w-80 p-6 glass-panel rounded-2xl z-10 transform translate-y-12 translate-x-4 translate-z-[-50px] hover:z-50 hover:scale-110 hover:rotate-y-12 transition-all duration-700 shadow-2xl animate-float backdrop-blur-2xl border-white/10">
-<div class="absolute inset-0 rounded-2xl bg-gradient-to-tr from-white/0 via-white/5 to-white/0 opacity-0 group-hover:opacity-100 animate-shine pointer-events-none"></div>
-<div class="flex justify-between items-center mb-6">
-<span class="text-xs font-mono text-gray-400">MARKET_SIM_V4</span>
-<div class="h-2 w-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#22c55e]"></div>
-</div>
-<div class="space-y-3">
-<div class="h-24 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-lg border border-white/5 mb-4 relative overflow-hidden group/card transform-style-3d">
-<div class="absolute inset-0 bg-[url('https://lh3.googleusercontent.com/aida-public/AB6AXuAkq_z3dhmk-ZfqUPe2FoyB8Ebrf2XLL1IKk0MgnAMBMF7Yq4FGW81tfdkaO8WzZBN5ed4GR28rRP51wj4mYT3Ua2BrEF_lMH2fnqrJZxF1A74qRm3E2W4RairSVN_EdIrRLgFD3LajH85zg7pA2MbdkK9Vw_e4zDGRhtBBBgU5s1MkoBuyEIyBAMPIiNuF-69gV6qIHZcURXPuM9rQTF1GgUaKPi-l2KHNdlKeBVoCGsFyK2bqu0-aATa1XVnVe2VoF8VBJd-QWQW-')] bg-cover opacity-30 mix-blend-overlay group-hover/card:scale-110 transition-transform duration-700"></div>
-<div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shine_2s_infinite]"></div>
-</div>
-<div class="h-2 w-full bg-white/10 rounded-full overflow-hidden">
-<div class="h-full w-2/3 bg-primary rounded-full animate-[width_2s_ease-in-out_infinite] shadow-[0_0_10px_#3b82f6]"></div>
-</div>
-<div class="h-2 w-2/3 bg-white/10 rounded-full"></div>
-</div>
-</div>
-<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 md:w-96 p-8 glass-panel bg-[#0a101a]/80 rounded-2xl z-20 border-white/20 shadow-[0_0_50px_rgba(59,130,246,0.15)] hover:scale-110 transition-all duration-500 hover:shadow-[0_0_100px_rgba(59,130,246,0.3)] translate-z-20 hover:rotate-x-12 transform-style-3d group/main">
-<div class="absolute -inset-1 bg-gradient-to-r from-primary via-accent to-primary rounded-2xl opacity-20 blur-lg animate-pulse"></div>
-<div class="relative z-10 translate-z-30">
-<div class="flex items-center gap-4 mb-6">
-<div class="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center text-primary shadow-[0_0_15px_rgba(59,130,246,0.4)] animate-pulse-fast">
-<span class="material-symbols-outlined">auto_fix_high</span>
-</div>
-<div>
-<h4 class="font-bold text-white text-lg">Auto-Scale</h4>
-<p class="text-xs text-gray-400">Infrastructure Logic</p>
-</div>
-</div>
-<div class="grid grid-cols-2 gap-3 mb-6">
-<div class="p-3 bg-black/60 rounded-lg text-center border border-white/5 hover:border-primary/50 transition-colors group/stat cursor-crosshair hover:shadow-[inset_0_0_10px_rgba(59,130,246,0.2)]">
-<span class="block text-xl font-bold text-white group-hover/stat:text-accent transition-colors">99.9%</span>
-<span class="text-[10px] text-gray-500 uppercase">Uptime</span>
-</div>
-<div class="p-3 bg-black/60 rounded-lg text-center border border-white/5 hover:border-primary/50 transition-colors group/stat cursor-crosshair hover:shadow-[inset_0_0_10px_rgba(59,130,246,0.2)]">
-<span class="block text-xl font-bold text-white group-hover/stat:text-accent transition-colors">4ms</span>
-<span class="text-[10px] text-gray-500 uppercase">Latency</span>
-</div>
-</div>
-<button class="w-full py-3 rounded-lg bg-primary hover:bg-blue-600 text-white text-xs font-bold uppercase tracking-wider transition-all hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] relative overflow-hidden group/btn">
-<span class="relative z-10">Deploy Agent</span>
-<div class="absolute inset-0 bg-white/30 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300 backdrop-blur-sm"></div>
-<div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover/btn:animate-[shine_1s_ease-in-out]"></div>
+
+<h1 class="text-6xl md:text-8xl lg:text-9xl font-bold leading-[0.85] tracking-tighter mb-8 font-display animate-fade-in-up" style="animation-delay: 0.2s;">
+Building AI <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500">
+Software Products.
+</span>
+</h1>
+
+<h2 class="mx-auto mt-6 max-w-2xl text-lg font-light leading-relaxed text-gray-400 md:text-xl font-body animate-fade-in-up" style="animation-delay: 0.4s;">
+We develop cutting-edge AI software products that transform businesses. From intelligent automation to machine learning solutions, we build AI-powered applications that deliver measurable results and competitive advantages.
+</h2>
+
+<div class="mt-12 flex flex-col gap-5 sm:flex-row sm:gap-6 w-full justify-center animate-fade-in-up" style="animation-delay: 0.6s;">
+<button class="group relative flex items-center justify-center gap-3 overflow-hidden rounded-full bg-white text-black px-8 py-4 text-sm font-bold uppercase tracking-widest transition-all hover:scale-110 hover:shadow-[0_0_80px_rgba(255,255,255,0.3)]">
+<span class="relative z-10">Start Your Project</span>
+<span class="material-symbols-outlined relative z-10 text-[20px] transition-transform group-hover:-rotate-45">arrow_outward</span>
+</button>
+<button class="group flex items-center justify-center gap-3 rounded-full border border-white/20 bg-white/5 px-8 py-4 text-sm font-bold uppercase tracking-widest text-white backdrop-blur-md transition-all hover:border-white/50 hover:bg-white/10">
+<span class="relative z-10">View Solutions</span>
+<span class="material-symbols-outlined text-[20px] text-gray-400 transition-colors group-hover:text-white">chevron_right</span>
 </button>
 </div>
 </div>
-<div class="absolute bottom-0 left-0 w-72 md:w-80 p-6 glass-panel rounded-2xl z-10 transform -translate-y-12 -translate-x-4 translate-z-[-20px] hover:z-50 hover:scale-110 hover:-rotate-y-12 transition-all duration-700 shadow-2xl animate-float-delayed backdrop-blur-2xl border-white/10">
-<div class="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none opacity-20">
-<div class="w-full h-[5px] bg-accent blur-[2px] animate-scan"></div>
+</header>
+
+<section class="relative py-32 bg-surface-dark" id="products">
+<div class="mx-auto max-w-7xl px-6">
+<div class="text-center mb-16">
+<span class="text-primary font-mono text-sm tracking-widest uppercase mb-2 block">AI Software Innovation</span>
+<h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">
+Intelligent <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary">AI Products.</span>
+</h2>
+<p class="text-gray-400 max-w-2xl mx-auto text-lg">
+Traditional software is static. Our AI products are intelligent. We develop machine learning applications, intelligent automation systems, and AI-powered platforms that learn, adapt, and deliver superior performance across industries.
+</p>
 </div>
-<div class="flex justify-between items-center mb-6">
-<span class="text-xs font-mono text-gray-400">DATA_INGEST</span>
-<span class="material-symbols-outlined text-gray-500 text-sm animate-bounce text-accent">download</span>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="glass-panel p-6 rounded-xl hover:bg-white/5 transition-all group">
+<div class="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-primary mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">psychology</span>
 </div>
-<div class="flex items-end gap-1 h-16 mb-4 perspective-1000">
-<div class="w-1/5 bg-white/10 rounded-t h-full hover:bg-primary transition-all duration-300 hover:scale-y-110 origin-bottom shadow-[0_0_10px_rgba(255,255,255,0.1)] hover:shadow-[0_0_20px_#3b82f6]"></div>
-<div class="w-1/5 bg-white/20 rounded-t h-3/4 hover:bg-primary transition-all duration-300 hover:scale-y-110 origin-bottom shadow-[0_0_10px_rgba(255,255,255,0.1)] hover:shadow-[0_0_20px_#3b82f6]"></div>
-<div class="w-1/5 bg-primary rounded-t h-1/2 animate-pulse hover:bg-primary-glow transition-all duration-300 hover:scale-y-150 origin-bottom shadow-[0_0_20px_#3b82f6]"></div>
-<div class="w-1/5 bg-white/10 rounded-t h-2/3 hover:bg-primary transition-all duration-300 hover:scale-y-110 origin-bottom shadow-[0_0_10px_rgba(255,255,255,0.1)] hover:shadow-[0_0_20px_#3b82f6]"></div>
-<div class="w-1/5 bg-white/10 rounded-t h-full hover:bg-primary transition-all duration-300 hover:scale-y-110 origin-bottom shadow-[0_0_10px_rgba(255,255,255,0.1)] hover:shadow-[0_0_20px_#3b82f6]"></div>
+<h3 class="text-xl font-bold text-white mb-2">Machine Learning</h3>
+<p class="text-gray-400 text-sm">Advanced ML algorithms that learn from data and improve over time.</p>
 </div>
+
+<div class="glass-panel p-6 rounded-xl hover:bg-white/5 transition-all group">
+<div class="flex h-12 w-12 items-center justify-center rounded-lg bg-accent/20 text-accent mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">smart_toy</span>
 </div>
+<h3 class="text-xl font-bold text-white mb-2">Intelligent Automation</h3>
+<p class="text-gray-400 text-sm">AI-powered automation that handles complex business processes.</p>
 </div>
+
+<div class="glass-panel p-6 rounded-xl hover:bg-white/5 transition-all group">
+<div class="flex h-12 w-12 items-center justify-center rounded-lg bg-purple-500/20 text-purple-400 mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">analytics</span>
 </div>
-</div>
-</section>
-<section class="relative z-20 bg-[#020408] py-20 border-t border-white/5 overflow-hidden perspective-2000" id="technology">
-<div class="absolute inset-0 bg-grid-pattern opacity-20 mask-gradient-b animate-[pulse_5s_infinite]"></div>
-<div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent animate-scan shadow-[0_0_20px_#3b82f6]"></div>
-<div class="mx-auto max-w-[1400px] px-6 md:px-12 relative z-10">
-<div class="mb-16 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-<div class="max-w-2xl transform-style-3d hover:rotate-x-12 transition-transform duration-700 origin-left perspective-1000">
-<span class="text-primary font-mono text-xs mb-2 block animate-pulse tracking-[0.2em] shadow-primary drop-shadow-[0_0_5px_rgba(59,130,246,0.8)]">PRODUCT ARCHITECTURE</span>
-<h3 class="text-4xl font-bold text-white md:text-5xl font-display text-shadow-lg group-hover:text-glow transition-all">AI Software Platform</h3>
-<p class="mt-4 text-gray-400 max-w-lg">Scalable AI infrastructure powering intelligent applications—from data processing to machine learning deployment and real-time analytics.</p>
-</div>
-<a class="group flex items-center gap-2 text-white hover:text-primary transition-colors border-b border-transparent hover:border-primary pb-1 z-20" href="#">
-<span class="font-bold text-sm uppercase tracking-wider">View Case Studies</span>
-<span class="material-symbols-outlined transition-transform group-hover:translate-x-1 text-sm">arrow_forward</span>
-</a>
-</div>
-<div class="grid h-auto md:h-[600px] w-full grid-cols-1 gap-6 md:grid-cols-4 md:grid-rows-2 perspective-1000">
-<div class="glass-card-hover group relative md:col-span-2 md:row-span-2 rounded-3xl bg-surface-dark border border-white/5 overflow-hidden cursor-none transform-style-3d hover:shadow-[0_0_100px_rgba(59,130,246,0.25)] hover:z-20 hover:scale-[1.02] duration-500">
-<div class="absolute inset-0 bg-noise opacity-10 mix-blend-overlay"></div>
-<div class="absolute inset-0 bg-cover bg-center transition-transform duration-[4s] group-hover:scale-125 opacity-60 group-hover:opacity-80" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB9vVb4Xmmw63zb8LIib6N7bVei2w64As1NLUOC0Ohm1fkd92mznXfcyGNZUua2uK_XODvNZP5msHWiHzEZLxXARXFsGBz0QpJX0M8K0LYbF2l1PaCoMRWyJMCaMiLRJrfjZhGaJEv3f3d7f-bNHqzTbs2i9qS_sL5qAlAjslPNDn_JE5KGas9lj1QPCYKRpFtvsR3VUiijswvizRu5PkzQAldB0fxh0T3ryNGOIIe-Tc3zEVuu0v0teAHsmveOyb9hi68oFTzfjQgv'); transform: scale(1.1);"></div>
-<div class="absolute inset-0 bg-gradient-to-t from-[#020408] via-transparent to-transparent opacity-90"></div>
-<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20 pointer-events-none">
-<div class="bg-white/10 backdrop-blur-md rounded-full p-8 border border-white/20 scale-0 group-hover:scale-100 transition-transform duration-500 delay-100 animate-pulse-fast shadow-[0_0_60px_rgba(255,255,255,0.3)]">
-<span class="material-symbols-outlined text-white text-6xl drop-shadow-[0_0_20px_white]">visibility</span>
-</div>
-</div>
-<div class="absolute bottom-0 left-0 p-10 w-full z-10 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 transform-style-3d">
-<div class="flex items-center gap-3 mb-3 translate-z-10">
-<span class="flex h-2 w-2 rounded-full bg-primary shadow-[0_0_15px_#3b82f6] animate-pulse"></span>
-<span class="text-[10px] font-bold uppercase tracking-widest text-primary text-glow">Live Data Stream</span>
-</div>
-<h4 class="text-4xl font-bold text-white mb-2 font-display drop-shadow-md translate-z-20 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-primary">AI Analytics Engine</h4>
-<p class="text-gray-400 text-sm max-w-sm group-hover:text-white transition-colors translate-z-10">Real-time data processing with machine learning insights and predictive modeling capabilities.</p>
-</div>
-</div>
-<div class="glass-card-hover group relative overflow-hidden rounded-3xl bg-surface-dark border border-white/5 min-h-[250px] md:min-h-0 transform-style-3d hover:scale-105 hover:-rotate-y-6 origin-left transition-all duration-500 z-10">
-<div class="absolute inset-0 bg-noise opacity-10 mix-blend-overlay"></div>
-<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-50" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAkq_z3dhmk-ZfqUPe2FoyB8Ebrf2XLL1IKk0MgnAMBMF7Yq4FGW81tfdkaO8WzZBN5ed4GR28rRP51wj4mYT3Ua2BrEF_lMH2fnqrJZxF1A74qRm3E2W4RairSVN_EdIrRLgFD3LajH85zg7pA2MbdkK9Vw_e4zDGRhtBBBgU5s1MkoBuyEIyBAMPIiNuF-69gV6qIHZcURXPuM9rQTF1GgUaKPi-l2KHNdlKeBVoCGsFyK2bqu0-aATa1XVnVe2VoF8VBJd-QWQW-');"></div>
-<div class="absolute inset-0 bg-gradient-to-t from-[#020408] to-transparent opacity-90"></div>
-<div class="absolute bottom-0 left-0 p-8 z-10 transform-style-3d">
-<span class="material-symbols-outlined text-4xl text-gray-500 mb-4 group-hover:text-accent transition-colors duration-300 drop-shadow-[0_0_15px_rgba(0,240,255,0.5)] translate-z-10">verified_user</span>
-<h4 class="text-xl font-bold text-white group-hover:text-accent transition-colors translate-z-20">Smart Automation</h4>
-</div>
-<div class="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-<span class="material-symbols-outlined text-white animate-bounce">arrow_outward</span>
-</div>
-<div class="absolute inset-0 border-2 border-transparent group-hover:border-accent/30 rounded-3xl transition-colors duration-300 pointer-events-none"></div>
-</div>
-<div class="glass-card-hover group relative overflow-hidden rounded-3xl bg-surface-dark border border-white/5 min-h-[250px] md:min-h-0 transform-style-3d hover:scale-105 hover:-rotate-y-6 origin-left transition-all duration-500 z-10">
-<div class="absolute inset-0 bg-noise opacity-10 mix-blend-overlay"></div>
-<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-50" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA3N75WhqNpPp_YIThq5RRdBS7Z_Y-LKQYTDfJFEfyRyYwfmX7I_zzNmJNFRM8oZi2AzKUFH7Gk60sx5YdYCFUqOe9n5A3iRN96a7IvbnwKGUqUbmUcTdxs3K6TZRgHgAxYgJ-CnKELUQ3xSJQeirOyYS4bs2zKfFeq_Cw_YmqHyxPZ3KFj50unv2yAGbqlnyVyo2EiVy3mO2daQb6UAC-JnXkfdyaMl7eFrLMyhPTasWjMR2bdC6vE49ItCkicl4EYzFUE6R7a1OeU');"></div>
-<div class="absolute inset-0 bg-gradient-to-t from-[#020408] to-transparent opacity-90"></div>
-<div class="absolute bottom-0 left-0 p-8 z-10 transform-style-3d">
-<span class="material-symbols-outlined text-4xl text-gray-500 mb-4 group-hover:text-accent transition-colors duration-300 drop-shadow-[0_0_15px_rgba(0,240,255,0.5)] translate-z-10">integration_instructions</span>
-<h4 class="text-xl font-bold text-white group-hover:text-accent transition-colors translate-z-20">ML Operations</h4>
-</div>
-<div class="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-<span class="material-symbols-outlined text-white animate-bounce">arrow_outward</span>
-</div>
-<div class="absolute inset-0 border-2 border-transparent group-hover:border-accent/30 rounded-3xl transition-colors duration-300 pointer-events-none"></div>
-</div>
-<div class="glass-card-hover group relative md:col-span-2 overflow-hidden rounded-3xl bg-surface-dark border border-white/5 min-h-[250px] md:min-h-0 transform-style-3d hover:scale-[1.03] hover:rotate-x-6 origin-bottom transition-all duration-500 z-10">
-<div class="absolute inset-0 bg-noise opacity-10 mix-blend-overlay"></div>
-<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-40" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCDFG9brFyPcdKKq1_XjTx_vQ9eM4K6YIbcpYvkOinKWPy4kMureQLAerusWvfd-5i7Xt7bhr7C-IYmaIPGXViu0CoB96ewPeqpm2-CYUHZ8py7MHnc0ABD1kdOMXYiBV3Zbl96c_RO3FymBTrTw3S7c1N-xexHaYJNG14hQ0fV_VkVGkr36tuNxZOTicw1RMmnuLyJ5f7XMIXNs25H75of1-XLsjuBMU6NvjU6SMzdzzm-15cGxOaWeahagGqUFlWMr9g_Q0XRasiE'); filter: hue-rotate(200deg);"></div>
-<div class="absolute inset-0 bg-gradient-to-t from-[#020408] to-transparent opacity-90"></div>
-<div class="absolute bottom-0 left-0 p-8 flex items-end justify-between w-full z-10">
-<div>
-<span class="text-[10px] text-accent font-bold uppercase tracking-widest mb-1 block text-glow animate-pulse">Worldwide</span>
-<h4 class="text-2xl font-bold text-white">Cloud Infrastructure</h4>
-</div>
-<span class="text-4xl font-mono text-gray-600 group-hover:text-white transition-colors shadow-black drop-shadow-[0_0_15px_rgba(255,255,255,0.6)]">99.99%</span>
-</div>
-<div class="absolute inset-0 bg-gradient-to-b from-transparent via-primary/40 to-transparent h-[10px] w-full -translate-y-full group-hover:translate-y-[500px] transition-transform duration-[2s] ease-linear shadow-[0_0_40px_#3b82f6]"></div>
+<h3 class="text-xl font-bold text-white mb-2">AI Analytics</h3>
+<p class="text-gray-400 text-sm">Real-time AI model performance monitoring with predictive insights.</p>
 </div>
 </div>
 </div>
 </section>
-<section class="relative z-20 bg-[#020408] py-24 border-t border-white/5 overflow-hidden">
-<div class="absolute inset-0 bg-cyber-grid opacity-5 mask-gradient-b"></div>
-<div class="mx-auto max-w-7xl px-6 md:px-12 text-center relative z-10">
-<h3 class="text-2xl font-light text-gray-400 mb-12">Delivering intelligent software solutions that drive business transformation.</h3>
-<div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 perspective-1000">
-<div class="p-8 group cursor-crosshair hover:-translate-y-2 transition-all duration-500 relative bg-white/5 rounded-2xl border border-white/5 hover:border-primary/30 hover:shadow-[0_0_50px_rgba(59,130,246,0.2)] transform-style-3d hover:rotate-y-12">
-<div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary/10 opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity"></div>
-<div class="text-4xl md:text-5xl font-bold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-accent transition-all font-display text-glow translate-z-10">50+</div>
-<div class="text-xs uppercase tracking-widest text-gray-500 group-hover:text-white transition-colors translate-z-10">AI Products</div>
+
+<section class="relative py-32 bg-background-dark" id="stats">
+<div class="mx-auto max-w-7xl px-6 text-center">
+<h3 class="text-2xl font-light text-gray-400 mb-12">Built for intelligence, engineered for performance.</h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+<div class="p-8 group">
+<div class="text-4xl md:text-5xl font-bold text-white mb-2 font-display text-glow">200+</div>
+<div class="text-xs uppercase tracking-widest text-gray-500">AI Products</div>
 </div>
-<div class="p-8 group cursor-crosshair hover:-translate-y-2 transition-all duration-500 relative bg-white/5 rounded-2xl border border-white/5 hover:border-purple-500/30 hover:shadow-[0_0_50px_rgba(168,85,247,0.2)] transform-style-3d hover:-rotate-y-12">
-<div class="absolute inset-0 bg-gradient-to-b from-transparent to-purple-500/10 opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity"></div>
-<div class="text-4xl md:text-5xl font-bold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 transition-all font-display text-glow translate-z-10">$50M+</div>
-<div class="text-xs uppercase tracking-widest text-gray-500 group-hover:text-white transition-colors translate-z-10">Revenue Generated</div>
+<div class="p-8 group">
+<div class="text-4xl md:text-5xl font-bold text-white mb-2 font-display text-glow">95%</div>
+<div class="text-xs uppercase tracking-widest text-gray-500">Accuracy Rate</div>
 </div>
-<div class="p-8 group cursor-crosshair hover:-translate-y-2 transition-all duration-500 relative bg-white/5 rounded-2xl border border-white/5 hover:border-accent/30 hover:shadow-[0_0_50px_rgba(0,240,255,0.2)] transform-style-3d hover:rotate-x-12">
-<div class="absolute inset-0 bg-gradient-to-b from-transparent to-accent/10 opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity"></div>
-<div class="text-4xl md:text-5xl font-bold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-accent group-hover:to-blue-400 transition-all font-display text-glow translate-z-10">5ms</div>
-<div class="text-xs uppercase tracking-widest text-gray-500 group-hover:text-white transition-colors translate-z-10">API Response Time</div>
+<div class="p-8 group">
+<div class="text-4xl md:text-5xl font-bold text-white mb-2 font-display text-glow">5ms</div>
+<div class="text-xs uppercase tracking-widest text-gray-500">AI Response Time</div>
 </div>
-<div class="p-8 group cursor-crosshair hover:-translate-y-2 transition-all duration-500 relative bg-white/5 rounded-2xl border border-white/5 hover:border-green-500/30 hover:shadow-[0_0_50px_rgba(34,197,94,0.2)] transform-style-3d hover:-rotate-x-12">
-<div class="absolute inset-0 bg-gradient-to-b from-transparent to-green-500/10 opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity"></div>
-<div class="text-4xl md:text-5xl font-bold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-green-400 group-hover:to-teal-400 transition-all font-display text-glow translate-z-10">24/7</div>
-<div class="text-xs uppercase tracking-widest text-gray-500 group-hover:text-white transition-colors translate-z-10">AI Monitoring</div>
+<div class="p-8 group">
+<div class="text-4xl md:text-5xl font-bold text-white mb-2 font-display text-glow">24/7</div>
+<div class="text-xs uppercase tracking-widest text-gray-500">AI Model Monitoring</div>
 </div>
 </div>
 </div>
 </section>
-<section class="relative py-40 overflow-hidden flex items-center justify-center border-t border-white/5 bg-[#020408] perspective-2000">
-<div class="absolute inset-0 bg-[#020408]"></div>
-<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-primary/20 blur-[150px] rounded-full pointer-events-none animate-blob"></div>
-<div class="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/10 blur-[120px] rounded-full pointer-events-none animate-pulse-slow"></div>
-<div class="absolute bottom-1/4 left-1/4 w-[300px] h-[300px] bg-purple-500/10 blur-[100px] rounded-full pointer-events-none animate-blob animation-delay-4000"></div>
-<div class="relative z-10 text-center max-w-4xl px-6 transform-style-3d">
-<h2 class="text-5xl md:text-8xl font-bold text-white mb-8 tracking-tighter font-display hover:tracking-wide transition-all duration-1000 cursor-default hover:text-glow group">
-            Ready to transform <br/>
-<span class="text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500 animate-text-shimmer bg-[length:200%_auto] relative">
-                your business?
-                <div class="absolute -bottom-2 left-0 w-full h-[5px] bg-accent blur-md opacity-0 group-hover:opacity-50 transition-opacity"></div>
+
+<section class="relative py-40 overflow-hidden flex items-center justify-center bg-[#050914]" id="contact">
+<div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+<h2 class="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tighter">
+Ready to build <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-accent">
+intelligent products?
 </span>
 </h2>
-<p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed transform hover:scale-105 transition-transform duration-500">
-            Join leading companies using Shapmind Labs AI software products to automate processes and drive growth.
-        </p>
-<div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
-<button onclick="location.href='contact.html'" class="group relative overflow-hidden rounded-full bg-white px-12 py-5 text-lg font-bold text-black transition-all hover:scale-110 shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:shadow-[0_0_100px_rgba(255,255,255,0.5)] z-10">
+<p class="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
+Partner with Shapmind Labs to develop AI software products that transform your business and deliver competitive advantages.
+</p>
+<div class="flex flex-col md:flex-row items-center justify-center gap-6">
+<button class="relative group px-8 py-4 bg-white text-background-dark font-bold text-lg rounded-xl hover:scale-105 transition-all duration-300 shadow-[0_0_40px_rgba(255,255,255,0.3)]">
 <span class="relative z-10 flex items-center gap-2">
-                    Deploy AI Solutions
-                    <span class="material-symbols-outlined text-xl transition-transform group-hover:translate-x-2 group-hover:rotate-[-45deg] duration-300">rocket_launch</span>
+Start Your Project
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
 </span>
-<div class="absolute inset-0 bg-gradient-to-r from-gray-200 to-white opacity-0 group-hover:opacity-100 transition-opacity"></div>
-<div class="absolute -inset-10 bg-white/50 blur-xl opacity-0 group-hover:opacity-100 animate-pulse"></div>
 </button>
-<button onclick="location.href='contact.html'" class="px-10 py-5 text-base font-bold text-gray-400 hover:text-white transition-colors relative group overflow-hidden rounded-full">
-<span class="relative z-10">Schedule Demo</span>
-<div class="absolute bottom-0 left-0 w-full h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
-<div class="absolute inset-0 bg-white/5 scale-0 group-hover:scale-100 rounded-full transition-transform duration-300"></div>
+<button class="px-8 py-4 rounded-xl border border-white/20 text-white font-medium hover:bg-white/5 transition-all">
+Schedule Consultation
 </button>
 </div>
 </div>
 </section>
-<footer class="border-t border-[#232f48] bg-[#0a0e17] py-12 relative z-20">
-<div class="layout-container px-10 flex flex-col md:flex-row justify-between items-center gap-6">
+
+<footer class="border-t border-white/5 bg-[#0a0e17] py-12">
+<div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
 <div class="flex items-center gap-2 text-gray-500">
-<span class="material-symbols-outlined text-[18px]"><img src="Sharpmind-Logo (1).svg" alt="SharpMind Labs" class="w-5 h-5"/></span>
-<span class="text-sm font-sans">© 2025 Shapmind Labs. All systems operational.</span>
+<span class="material-symbols-outlined text-[18px]">psychology</span>
+<span class="text-sm">© 2025 Shapmind Labs. All systems operational.</span>
 </div>
 <div class="flex gap-6">
-<a class="text-gray-500 hover:text-primary transition-colors text-sm font-medium" href="index.html">Home</a>
-<a class="text-gray-500 hover:text-primary transition-colors text-sm font-medium" href="productoverview.html">Product</a>
-<a class="text-gray-500 hover:text-primary transition-colors text-sm font-medium" href="solution.html">Solutions</a>
-<a class="text-gray-500 hover:text-primary transition-colors text-sm font-medium" href="about.html">About</a>
-<a class="text-gray-500 hover:text-primary transition-colors text-sm font-medium" href="contact.html">Contact</a>
+<a class="text-gray-500 hover:text-primary transition-colors text-sm" href="#home">Home</a>
+<a class="text-gray-500 hover:text-primary transition-colors text-sm" href="#products">Products</a>
+<a class="text-gray-500 hover:text-primary transition-colors text-sm" href="#solutions">Solutions</a>
+<a class="text-gray-500 hover:text-primary transition-colors text-sm" href="#about">About</a>
+<a class="text-gray-500 hover:text-primary transition-colors text-sm" href="#contact">Contact</a>
 </div>
 </div>
 </footer>
 
-</body></html>
+</body>
+</html>
