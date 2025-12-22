@@ -59,14 +59,14 @@ def send_email(subject: str, body: str) -> None:
 
 @app.get("/")
 def home():
-    return send_from_directory('../frontend', "index.html")
+    return send_from_directory(app.static_folder, "index.html")
 
 @app.route('/<path:filename>')
 def serve_static(filename):
     try:
-        return send_from_directory('../frontend', filename)
+        return send_from_directory(app.static_folder, filename)
     except:
-        return send_from_directory('../frontend', "index.html")
+        return send_from_directory(app.static_folder, "index.html")
 
 @app.post("/api/contact")
 def api_contact():
