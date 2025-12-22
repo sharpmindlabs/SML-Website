@@ -1,19 +1,123 @@
-from flask import Flask, send_from_directory
 import os
+import smtplib
+from email.message import EmailMessage
+from pathlib import Path
+from flask import Flask, request, jsonify, send_from_directory
+from flask_cors import CORS
+from dotenv import load_dotenv
 
-app = Flask(__name__)
+# Load environment variables from .env if present
+load_dotenv()
 
-@app.route('/')
-def index():
-    return send_from_directory('frontend', 'index.html')
+BASE_DIR = Path(__file__).parent.resolve()
+
+# Serve static files (the existing HTML/CSS/JS) from the project root
+app = Flask(__name__, static_folder=str(BASE_DIR), static_url_path='')
+CORS(app, resources={r"/api/*": {"origins": "*"}})
+
+# Company address (as requested)
+COMPANY_ADDRESS = "19, Thiruvalluvar Street, Sathyamangalam, Erode"
+
+# Email configuration from environment
+SMTP_HOST = os.getenv("SMTP_HOST", "")
+SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
+SMTP_USER = os.getenv("SMTP_USER", "")
+SMTP_PASS = os.getenv("SMTP_PASS", "")
+RECIPIENT_EMAIL = os.getenv("RECIPIENT_EMAIL", "velusamynakul@gmail.com")
+SENDER_EMAIL = os.getenv("SENDER_EMAIL", SMTP_USER)
+DISABLE_EMAIL = os.getenv("DISABLE_EMAIL", "").lower()
+
+
+def send_email(subject: str, body: str) -> None:
+    # Dev mode: allow local testing without SMTP
+    if DISABLE_EMAIL in ("1", "true", "yes"):  # no-op in dev
+        return
+    missing = [
+        name for name, val in (
+            ("SMTP_HOST", SMTP_HOST),
+            ("SMTP_USER", SMTP_USER),
+            ("SMTP_PASS", SMTP_PASS),
+            ("RECIPIENT_EMAIL", RECIPIENT_EMAIL),
+        ) if not val
+    ]
+    if missing:
+        raise RuntimeError(
+            f"SMTP configuration missing: {', '.join(missing)}. Set these in environment variables or .env"
+        )
+
+    msg = EmailMessage()
+    msg["From"] = SENDER_EMAIL
+    msg["To"] = RECIPIENT_EMAIL
+    msg["Subject"] = subject
+    msg.set_content(body)
+
+    with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
+        server.starttls()
+        server.login(SMTP_USER, SMTP_PASS)
+        server.send_message(msg)
+
+
+@app.get("/")
+def home():
+    # Default to index.html per current site structure
+    return send_from_directory('../frontend', "index.html")
 
 @app.route('/<path:filename>')
 def serve_static(filename):
-    return send_from_directory('frontend', filename)
+    return send_from_directory('../frontend', filename)
+
+@app.post("/api/contact")
+def api_contact():
+    data = request.form or request.get_json(silent=True) or {}
+
+    full_name = data.get("full_name", "").strip()
+    email = data.get("email", "").strip()
+    organization = data.get("organization", "").strip()
+    inquiry_type = data.get("inquiry_type", "").strip()
+    message = data.get("message", "").strip()
+
+    # Basic validation
+    missing = [
+        field for field, value in (
+            ("full_name", full_name),
+            ("email", email),
+            ("message", message),
+        ) if not value
+    ]
+    if missing:
+        return jsonify({"ok": False, "error": f"Missing fields: {', '.join(missing)}"}), 400
+
+    subject = f"SharpMind Labs — New Contact: {full_name}"
+    body_lines = [
+        "A new contact form submission was received:",
+        "",
+        f"Name: {full_name}",
+        f"Email: {email}",
+        f"Organization: {organization or '-'}",
+        f"Inquiry Type: {inquiry_type or '-'}",
+        "",
+        "Message:",
+        message,
+        "",
+        f"Company Address: {COMPANY_ADDRESS}",
+    ]
+    body = "\n".join(body_lines)
+
+    try:
+        send_email(subject, body)
+        return jsonify({"ok": True, "message": "Submission sent successfully."})
+    except Exception as e:
+        return jsonify({"ok": False, "error": str(e)}), 500
 
 @app.route('/api/health')
 def health_check():
     return {'status': 'healthy', 'service': 'SML Website'}
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=False)
+@app.get("/healthz")
+def healthz():
+    return {"status": "ok"}
+
+
+if __name__ == "__main__":
+    port = int(os.getenv("PORT", "5000"))
+    app.run(host="0.0.0.0", port=port, debug=True)
