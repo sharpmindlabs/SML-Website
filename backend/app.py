@@ -12,7 +12,9 @@ load_dotenv()
 BASE_DIR = Path(__file__).parent.resolve()
 
 # Serve static files from frontend directory
-app = Flask(__name__, static_folder='../frontend', static_url_path='')
+app = Flask(__name__)
+app.static_folder = os.path.join(os.path.dirname(__file__), '..', 'frontend')
+app.static_url_path = ''
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 # Company address (as requested)
@@ -57,16 +59,16 @@ def send_email(subject: str, body: str) -> None:
         server.send_message(msg)
 
 
-@app.get("/")
+@app.route('/')
 def home():
-    return send_from_directory(app.static_folder, "index.html")
+    return app.send_static_file('index.html')
 
 @app.route('/<path:filename>')
 def serve_static(filename):
     try:
-        return send_from_directory(app.static_folder, filename)
+        return app.send_static_file(filename)
     except:
-        return send_from_directory(app.static_folder, "index.html")
+        return app.send_static_file('index.html')
 
 @app.post("/api/contact")
 def api_contact():

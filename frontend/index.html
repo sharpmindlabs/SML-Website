@@ -1,4 +1,35 @@
-<!DOCTYPE html>
+ubuntu@SML-Website:~/SML-Website$ docker compose up -d --build
+WARN[0000] /home/ubuntu/SML-Website/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion
+[+] Building 1.1s (12/12) FINISHED
+ => [internal] load local bake definitions                                                                         0.0s
+ => => reading from stdin 520B                                                                                     0.0s
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 224B                                                                               0.0s
+ => [internal] load metadata for docker.io/library/python:3.12-slim                                                0.7s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => [1/5] FROM docker.io/library/python:3.12-slim@sha256:fa48eefe2146644c2308b909d6bb7651a768178f84fc9550dcd495e4  0.0s
+ => => resolve docker.io/library/python:3.12-slim@sha256:fa48eefe2146644c2308b909d6bb7651a768178f84fc9550dcd495e4  0.0s
+ => [internal] load build context                                                                                  0.0s
+ => => transferring context: 5.47kB                                                                                0.0s
+ => CACHED [2/5] WORKDIR /app                                                                                      0.0s
+ => CACHED [3/5] COPY requirements.txt .                                                                           0.0s
+ => CACHED [4/5] RUN pip install --no-cache-dir -r requirements.txt                                                0.0s
+ => CACHED [5/5] COPY . .                                                                                          0.0s
+ => exporting to image                                                                                             0.1s
+ => => exporting layers                                                                                            0.0s
+ => => exporting manifest sha256:be161e32ab5cc887cb331be764ee749f418b52bc20a552db53eb88913d598609                  0.0s
+ => => exporting config sha256:a5ebe39ed1ae28efe4bfe77ced834fdcbab361c0fd3ee46ed3e1dc31f47f7d65                    0.0s
+ => => exporting attestation manifest sha256:a9af75fb3d9e15fa3074605e52cc76dd9c5d000703ff7c52f847b2b31f373e97      0.1s
+ => => exporting manifest list sha256:4642f8a4868bf7e9e56edcfb1e96bdc92b156b194335b3eb7f1883776e17350c             0.0s
+ => => naming to docker.io/library/sml-website-backend:latest                                                      0.0s
+ => => unpacking to docker.io/library/sml-website-backend:latest                                                   0.0s
+ => resolving provenance for metadata file                                                                         0.0s
+[+] up 3/3
+ ✔ Image sml-website-backend       Built                                                                           1.2s
+ ✔ Network sml-website_default     Created                                                                         0.0s
+ ✔ Container sml-website-backend-1 Created                                                                         0.1s
+ubuntu@SML-Website:~/SML-Website$<!DOCTYPE html>
 <html class="dark scroll-smooth" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
