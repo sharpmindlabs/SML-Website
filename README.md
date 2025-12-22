@@ -35,7 +35,7 @@ python app.py
 ### Docker Deployment
 ```bash
 # Run full stack with Docker Compose
-docker-compose up -d
+docker compose up -d
 
 # Check health
 curl http://localhost/healthz

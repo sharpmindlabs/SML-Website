@@ -38,14 +38,14 @@ jobs:
     
     - name: Build Docker images
       run: |
-        docker-compose build
+        docker compose build
     
     - name: Test Docker setup
       run: |
-        docker-compose up -d
+        docker compose up -d
         sleep 10
         curl -f http://localhost/healthz || exit 1
-        docker-compose down
+        docker compose down
     
     - name: Deploy to production
       run: |
