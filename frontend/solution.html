@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Shapmind Labs - Ultimate Solutions</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3b82f6", 
+                        "primary-light": "#60a5fa",
+                        "primary-dark": "#2563eb",
+                        "accent": "#06b6d4",
+                        "purple-glow": "#8b5cf6",
+                        "background-dark": "#020408", 
+                        "surface-dark": "#0B1120",
+                        "surface-light": "#1e293b",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    backgroundImage: {
+                        'hero-glow': 'radial-gradient(circle at 50% 30%, rgba(59, 130, 246, 0.15) 0%, rgba(2, 4, 8, 0) 70%)',
+                        'grid-pattern': "linear-gradient(to right, rgba(30, 41, 59, 0.3) 1px, transparent 1px), linear-gradient(to bottom, rgba(30, 41, 59, 0.3) 1px, transparent 1px)",
+                        'shimmer-gradient': 'linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent)',
+                        'cyber-grid': 'radial-gradient(circle, rgba(59,130,246,0.1) 1px, transparent 1px)',
+                        'data-stream': 'linear-gradient(0deg, transparent 0%, rgba(59, 130, 246, 0.4) 50%, transparent 100%)',
+                    },
+                    animation: {
+                        'float': 'float 8s ease-in-out infinite',
+                        'float-reverse': 'floatReverse 10s ease-in-out infinite',
+                        'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'fade-in-up': 'fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'reveal': 'reveal 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards',
+                        'shimmer': 'shimmer 3s infinite linear',
+                        'spin-slow': 'spin 15s linear infinite',
+                        'spin-reverse': 'spin 20s linear infinite reverse',
+                        'marquee': 'marquee 25s linear infinite',
+                        'slide-track': 'slideTrack 8s linear infinite',
+                        'ripple': 'ripple 1s linear infinite',
+                        'scan': 'scan 4s linear infinite',
+                        'hologram-pulse': 'hologramPulse 2s ease-in-out infinite',
+                        'node-pulse': 'nodePulse 2s ease-in-out infinite',
+                        'orbit': 'orbit 20s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        floatReverse: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(20px)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        reveal: {
+                            '0%': { width: '0%' },
+                            '100%': { width: '100%' },
+                        },
+                        shimmer: {
+                            '0%': { transform: 'translateX(-100%)' },
+                            '100%': { transform: 'translateX(100%)' },
+                        },
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-100%)' },
+                        },
+                        slideTrack: {
+                            '0%': { transform: 'translateY(-100%)', opacity: '0' },
+                            '50%': { opacity: '1' },
+                            '100%': { transform: 'translateY(100%)', opacity: '0' } 
+                        },
+                        ripple: {
+                            '0%': { transform: 'scale(0)', opacity: '1' },
+                            '100%': { transform: 'scale(4)', opacity: '0' },
+                        },
+                        scan: {
+                            '0%': { backgroundPosition: '0% 0%' },
+                            '100%': { backgroundPosition: '0% 100%' },
+                        },
+                        hologramPulse: {
+                            '0%, 100%': { opacity: '0.8', boxShadow: '0 0 10px rgba(6, 182, 212, 0.3)' },
+                            '50%': { opacity: '1', boxShadow: '0 0 25px rgba(6, 182, 212, 0.6)' },
+                        },
+                        nodePulse: {
+                            '0%, 100%': { transform: 'scale(1)', opacity: '0.8' },
+                            '50%': { transform: 'scale(1.2)', opacity: '0.4' },
+                        },
+                        orbit: {
+                            '0%': { transform: 'rotate(0deg)' },
+                            '100%': { transform: 'rotate(360deg)' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .glass-card {
+                @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)];
+            } 
+            .glass-panel {
+                @apply bg-[#0B1120]/80 backdrop-blur-2xl border border-white/5;
+            } 
+            .glass-nav {
+                @apply bg-[#020408]/70 backdrop-blur-md border-b border-white/5;
+            } 
+            .text-glow-primary {
+                text-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
+            } 
+            .text-glow-accent {
+                text-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+            } 
+            .perspective-text {
+                transform: perspective(500px) rotateX(20deg);
+            }
+            .hide-scrollbar::-webkit-scrollbar {
+                display: none;
+            }
+            .hide-scrollbar {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }.custom-cursor-container {
+                pointer-events: none;
+                position: fixed;
+                z-index: 10000;
+                top: 0;
+                left: 0;
+                transform: translate(-50%, -50%);
+                mix-blend-mode: screen; 
+            }
+            .cursor-core {
+                width: 12px;
+                height: 12px;
+                background-color: #3b82f6;
+                border-radius: 50%;
+                box-shadow: 0 0 15px 2px rgba(59, 130, 246, 0.8), 0 0 5px rgba(255, 255, 255, 0.8) inset;
+                transition: width 0.2s cubic-bezier(0.19, 1, 0.22, 1), height 0.2s cubic-bezier(0.19, 1, 0.22, 1), background-color 0.2s;
+            }
+            .cursor-ring {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 40px;
+                height: 40px;
+                border: 1px solid rgba(59, 130, 246, 0.4);
+                border-radius: 50%;
+                transition: all 0.15s cubic-bezier(0.19, 1, 0.22, 1);
+            }
+            .cursor-trail {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
+                opacity: 0;
+                transition: opacity 0.3s;
+            }body.is-hovering .cursor-core {
+                width: 8px;
+                height: 8px;
+                background-color: #06b6d4;
+                box-shadow: 0 0 20px 4px rgba(6, 182, 212, 0.9);
+            }
+            body.is-hovering .cursor-ring {
+                width: 60px;
+                height: 60px;
+                border-color: rgba(6, 182, 212, 0.6);
+                border-width: 2px;
+                background-color: rgba(6, 182, 212, 0.05);
+            }
+            body.is-active .cursor-core {
+                transform: scale(0.8);
+            }
+            body.is-active .cursor-ring {
+                width: 50px;
+                height: 50px;
+                background-color: rgba(6, 182, 212, 0.1);
+            }.click-ripple {
+                position: fixed;
+                border-radius: 50%;
+                transform: translate(-50%, -50%) scale(0);
+                background: radial-gradient(circle, rgba(6, 182, 212, 0) 0%, rgba(6, 182, 212, 0.5) 50%, rgba(6, 182, 212, 0) 100%);
+                pointer-events: none;
+                z-index: 9999;
+                animation: ripple-expand 0.6s ease-out forwards;
+            }
+            @keyframes ripple-expand {
+                0% {
+                    width: 0;
+                    height: 0;
+                    opacity: 0.8;
+                }
+                100% {
+                    width: 200px;
+                    height: 200px;
+                    opacity: 0;
+                }
+            }
+            .interactive-bg-element {
+                transition: transform 0.1s cubic-bezier(0.23, 1, 0.32, 1);
+            }
+            .glass-card-interactive {
+                @apply relative overflow-hidden transition-all duration-500 ease-out;
+            }
+            .glass-card-interactive::before {
+                content: '';
+                @apply absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 transition-opacity duration-500;
+            }
+            .glass-card-interactive:hover::before {
+                @apply opacity-100;
+            }
+            .glass-card-interactive:hover {
+                transform: translateY(-5px) scale(1.02) perspective(1000px) rotateX(2deg);
+                box-shadow: 0 20px 40px -10px rgba(59, 130, 246, 0.3), 0 0 20px rgba(59, 130, 246, 0.1) inset;
+                border-color: rgba(255, 255, 255, 0.3);
+            }
+            .holographic-text {
+                background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.8) 100%);
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+                text-shadow: 0 0 10px rgba(6, 182, 212, 0.4);
+            }
+            .volumetric-light {
+                position: absolute;
+                width: 200%;
+                height: 200%;
+                background: radial-gradient(circle at 50% 50%, rgba(59,130,246,0.05), transparent 60%);
+                pointer-events: none;
+                mix-blend-mode: screen;
+            }
+            .scanline {
+                width: 100%;
+                height: 2px;
+                background: rgba(59, 130, 246, 0.3);
+                position: absolute;
+                top: 0;
+                left: 0;
+                animation: scan 3s linear infinite;
+                opacity: 0.5;
+                box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+            }
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #020408
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #1e293b, #3b82f6);
+            border-radius: 99px
+        }
+        ::selection {
+            background: rgba(59, 130, 246, 0.3);
+            color: white;
+            text-shadow: 0 0 10px rgba(59, 130, 246, 0.5)
+        }body, a, button, input, textarea, select {
+            cursor: none !important;
+        }
+        .bg-noise {
+            background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDTz5vu4-blXQ0877F7zAs2y2e2qYGc5EmOe4D4SiZE_mUc-yl-pPSv8KP0F13PpPnMY_IQ4uM5al5tSwSVeV2Pza3PXHdj8A2FjISoQjOnpVx41k9jAwlBc_zgq0LKRuyWTciJT52eimolqmIkIBU2NVbug2i0Vkt1CVAAXLoJ0UlkNGsKsK30_O8mZmUx4izh8H4zBw7coAkR9hW0Jw3Udou5JF5g82j7pirusBjb6iC4ZSGiE95nFHwKLzZ2LAIWticRb4R8885-);
+        }
+        .card-3d-hover {
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+        }
+        .card-3d-hover:hover {
+            transform: translatey(-5px) rotatex(2deg) rotatey(2deg);
+        }
+        .timeline-connector {
+            background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.1) 100%);
+            background-size: 200% 100%;
+            animation: flowLine 3s linear infinite;
+        }
+        @keyframes flowLine {
+            0% { background-position: 100% 0; }
+            100% { background-position: -100% 0; }
+        }.data-stream-bg {
+            background-image: linear-gradient(0deg, transparent 24%, rgba(6, 182, 212, 0.03) 25%, rgba(6, 182, 212, 0.03) 26%, transparent 27%, transparent 74%, rgba(6, 182, 212, 0.03) 75%, rgba(6, 182, 212, 0.03) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(6, 182, 212, 0.03) 25%, rgba(6, 182, 212, 0.03) 26%, transparent 27%, transparent 74%, rgba(6, 182, 212, 0.03) 75%, rgba(6, 182, 212, 0.03) 76%, transparent 77%, transparent);
+            background-size: 50px 50px;
+        }
+        .matrix-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.05;
+        }
+        .matrix-col {
+            position: absolute;
+            top: -100%;
+            color: #06b6d4;
+            font-family: monospace;
+            font-size: 14px;
+            white-space: pre;
+            line-height: 1;
+            animation: matrix-fall linear infinite;
+        }
+        @keyframes matrix-fall {
+            to { transform: translateY(120vh); }
+        }.no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }.method-card {
+            width: 70px;transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .method-card:hover {
+            width: 420px;}
+        .method-card .content-reveal {
+            opacity: 0;
+            transform: translateX(10px);
+            transition: all 0.4s ease-out;
+            pointer-events: none;
+            width: 320px;}
+        .method-card:hover .content-reveal {
+            opacity: 1;
+            transform: translateX(0);
+            pointer-events: auto;
+            transition-delay: 0.2s;
+        }
+        .method-card .glyph-icon {
+            transform: scale(1);
+            transition: transform 0.4s ease;
+        }
+        .method-card:hover .glyph-icon {
+            transform: scale(0.7) translateY(-20px);
+        }
+        .method-card .rotate-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+            opacity: 1;
+            transition: opacity 0.3s, transform 0.3s;
+            white-space: nowrap;
+        }
+        .method-card:hover .rotate-text {
+            opacity: 0;
+            transform: rotate(180deg) translateY(20px);
+        }
+        .method-card .step-number {
+             transition: all 0.5s ease;
+        }
+        .method-card:hover .step-number {
+             transform: scale(2) translate(10px, 10px);
+             opacity: 0.1;
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-slate-100 font-body overflow-x-hidden antialiased selection:bg-primary/30 selection:text-white">
+<div class="custom-cursor-container" id="customCursor">
+<div class="cursor-trail"></div>
+<div class="cursor-ring"></div>
+<div class="cursor-core"></div>
+</div>
+<div class="matrix-rain" id="matrixRain"></div>
+<div class="fixed inset-0 pointer-events-none z-0">
+<div class="absolute inset-0 bg-gradient-to-br from-background-dark via-transparent to-background-dark opacity-90"></div>
+<div class="absolute top-0 left-0 w-full h-full data-stream-bg opacity-30 animate-pulse-slow"></div>
+<div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(11,17,32,0)_0%,rgba(2,4,8,0.8)_100%)]"></div>
+</div>
+</nav>
+<nav class="fixed top-0 left-0 right-0 z-50 flex w-full items-center justify-between border-b border-white/5 bg-[#020408]/60 px-6 py-4 backdrop-blur-xl transition-all duration-300 hover:bg-[#020408]/80">
+<div class="flex items-center gap-3 group cursor-pointer relative perspective-1000">
+<div class="absolute -inset-6 bg-primary/20 opacity-0 group-hover:opacity-100 blur-3xl transition-opacity duration-700 rounded-full"></div>
+<div class="relative flex size-10 items-center justify-center rounded-lg bg-white/5 border border-white/10 text-primary overflow-hidden group-hover:border-accent/50 transition-all duration-500 group-hover:scale-110 group-hover:rotate-[360deg] shadow-[0_0_20px_rgba(59,130,246,0.3)] transform-style-3d">
+<img src="Sharpmind-Logo (1).svg" alt="SharpMind Labs" class="relative z-10 w-8 h-8 animate-pulse-slow translate-z-10 filter brightness-0 invert contrast-125 opacity-95 group-hover:brightness-100 group-hover:invert-0 transition-all duration-300 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+</div>
+<div class="flex flex-col transform-style-3d group-hover:translate-x-2 transition-transform duration-500">
+<span class="text-lg font-bold tracking-tight text-white font-display leading-none group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-accent transition-all text-glow translate-z-10 logo-font">Shapmind</span>
+<span class="text-[10px] uppercase tracking-[0.2em] text-gray-500 group-hover:text-accent transition-colors translate-z-10 logo-font">Labs</span>
+</div>
+</div>
+<div class="flex items-center justify-center flex-1">
+<div class="hidden items-center gap-2 rounded-full bg-white/5 border border-white/5 p-1.5 px-2 backdrop-blur-2xl md:flex shadow-[0_0_20px_rgba(0,0,0,0.5)] transform-style-3d hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all duration-500 hover:scale-105">
+<a class="px-5 py-2 text-xs font-medium uppercase tracking-wider text-gray-400 hover:text-white hover:bg-white/5 rounded-full transition-all relative group overflow-hidden" href="index2.html">
+<span class="relative z-10 group-hover:translate-x-1 transition-transform duration-300 block">Home</span>
+<div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
+<div class="absolute bottom-0 left-0 h-[1px] w-full bg-primary/50 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 delay-75"></div>
+</a>
+<a class="px-5 py-2 text-xs font-medium uppercase tracking-wider text-gray-400 hover:text-white hover:bg-white/5 rounded-full transition-all relative group overflow-hidden" href="productoverview.html">
+<span class="relative z-10 group-hover:translate-x-1 transition-transform duration-300 block">Product</span>
+<div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 ease-out delay-75"></div>
+<div class="absolute bottom-0 left-0 h-[1px] w-full bg-primary/50 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 delay-100"></div>
+</a>
+<a class="px-5 py-2 text-xs font-medium uppercase tracking-wider text-white hover:text-white hover:bg-white/5 rounded-full transition-all relative group overflow-hidden" href="solution.html">
+<span class="relative z-10 group-hover:translate-x-1 transition-transform duration-300 block">Solutions</span>
+<div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 ease-out delay-150"></div>
+<div class="absolute bottom-0 left-0 h-[1px] w-full bg-primary/50 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 delay-200"></div>
+</a>
+<a class="px-5 py-2 text-xs font-medium uppercase tracking-wider text-gray-400 hover:text-white hover:bg-white/5 rounded-full transition-all relative group overflow-hidden" href="about.html">
+<span class="relative z-10 group-hover:translate-x-1 transition-transform duration-300 block">About</span>
+<div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 ease-out delay-150"></div>
+<div class="absolute bottom-0 left-0 h-[1px] w-full bg-primary/50 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 delay-200"></div>
+</a>
+<a class="px-5 py-2 text-xs font-medium uppercase tracking-wider text-gray-400 hover:text-white hover:bg-white/5 rounded-full transition-all relative group overflow-hidden" href="contact.html">
+<span class="relative z-10 group-hover:translate-x-1 transition-transform duration-300 block">Contact</span>
+<div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 ease-out delay-150"></div>
+<div class="absolute bottom-0 left-0 h-[1px] w-full bg-primary/50 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 delay-200"></div>
+</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button onclick="location.href='contact.html'" class="hidden group relative overflow-hidden rounded-full bg-white text-black px-7 py-3 text-xs font-bold uppercase tracking-wider transition-all hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] md:block active:scale-95">
+<span class="relative z-10 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-black group-hover:to-blue-900 transition-colors">Get Access</span>
+<div class="absolute inset-0 bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 opacity-0 transition-opacity group-hover:opacity-100 animate-text-shimmer bg-[length:200%_auto]"></div>
+<div class="absolute inset-0 bg-white mix-blend-overlay opacity-0 group-hover:opacity-50"></div>
+<div class="absolute -top-10 -left-10 w-20 h-20 bg-white blur-xl group-hover:animate-float"></div>
+</button>
+</div>
+</nav>
+</nav>
+<main class="relative min-h-screen w-full flex flex-col justify-center items-center pt-20 overflow-hidden bg-background-dark" id="solutions">
+<div class="absolute inset-0 w-full h-full z-0 pointer-events-none">
+<div class="absolute inset-0 bg-background-dark"></div>
+<div class="absolute inset-0 opacity-40 mix-blend-screen bg-cover bg-center animate-pulse-slow interactive-bg-element" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBrMbw8747ijJme1QrHlVLmpkiCQXvegQs9EI7xSmLF-dm-zOta69DqYUjWC1VMyjbiH5D82UuFZzrPe8z39MDiUCHu9YJdijCZVMvrW77TrS9hAWY7vqG14rScwO-SQUuPNrDUgbDJL2lUq8vc-n5_Q-w-1JqhnOJDi86q6TsL_vpqQDP448eNT2lCvi9AiyEGO3HBCZVBtWfa0aRjzAQ8Vzu7mksw5JpKteD29eZvoSwOa7aeZqKp8-4zQULNfGxzgWn796DsklhS'); transform: scale(1.05);"></div>
+<div class="absolute top-[-20%] left-[20%] w-[60%] h-[140%] bg-gradient-to-b from-primary/10 to-transparent transform -rotate-12 blur-3xl pointer-events-none mix-blend-screen animate-pulse-slow"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-background-dark via-transparent to-background-dark"></div>
+<div class="absolute inset-0 bg-hero-glow opacity-80 mix-blend-screen"></div>
+<div class="absolute bottom-0 w-full h-[50vh] bg-grid-pattern bg-[length:40px_40px] opacity-[0.15] interactive-bg-element origin-bottom" style="transform: perspective(1000px) rotateX(60deg) scale(2);"></div>
+<div class="absolute top-1/4 left-1/4 size-64 bg-primary/20 rounded-full blur-[100px] animate-float opacity-40 interactive-bg-element" data-speed="0.05"></div>
+<div class="absolute bottom-1/3 right-1/4 size-96 bg-accent/10 rounded-full blur-[120px] animate-float-reverse opacity-30 interactive-bg-element" data-speed="0.07"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[800px] bg-gradient-to-r from-primary/5 to-purple-glow/5 rounded-full blur-[100px] animate-pulse-slow opacity-20 pointer-events-none"></div>
+<div class="absolute inset-0 bg-noise opacity-30 mix-blend-overlay"></div>
+</div>
+<div class="relative z-10 w-full max-w-7xl px-6 flex flex-col items-center text-center perspective-1000">
+<div class="mb-8 opacity-0 animate-fade-in-up" style="animation-delay: 0.1s;">
+<div class="group relative flex items-center gap-3 px-5 py-2 rounded-full border border-primary/20 bg-primary/5 backdrop-blur-md hover:border-primary/50 transition-colors duration-300 shadow-[0_0_20px_-5px_rgba(59,130,246,0.3)] cursor-none hover:scale-105 transform hover:shadow-[0_0_30px_rgba(59,130,246,0.5)]">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+<span class="text-primary-light text-xs font-bold uppercase tracking-[0.2em] group-hover:text-white transition-colors">The Future of Product Engineering</span>
+</div>
+</div>
+<h1 class="max-w-6xl text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white mb-8 leading-[1.05] font-display opacity-0 animate-fade-in-up transform-gpu" style="animation-delay: 0.3s;">
+            We Don’t Just <br class="hidden md:block"/>
+<span class="inline-block text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-500 drop-shadow-sm hover:scale-105 transition-transform duration-500 cursor-default interactive-bg-element" data-speed="0.02">Build Products.</span>
+<br/>
+<span class="relative inline-block mt-2 group">
+<span class="absolute inset-0 text-primary opacity-0 group-hover:opacity-100 group-hover:animate-pulse blur-[2px] transition-opacity">We Engineer Ecosystems.</span>
+<span class="absolute -inset-x-4 -inset-y-2 blur-3xl bg-primary/20 rounded-full opacity-50 group-hover:opacity-100 transition-opacity duration-700 animate-pulse-slow mix-blend-screen"></span>
+<span class="relative text-transparent bg-clip-text bg-gradient-to-r from-primary-light via-white to-accent text-glow-primary hover:tracking-wide transition-all duration-500 z-10 holographic-text">
+                    We Engineer Ecosystems.
+                </span>
+</span>
+</h1>
+<p class="max-w-3xl text-lg md:text-xl text-slate-400 font-light leading-relaxed mb-12 opacity-0 animate-fade-in-up" style="animation-delay: 0.5s;">
+            Shapmind Labs partners with visionaries to design, build, and scale intelligent digital products through our proprietary <span class="text-white font-medium bg-white/5 px-2 py-0.5 rounded border border-white/10 hover:border-primary/50 hover:text-primary-light transition-colors cursor-help">B.O.T. Framework</span>.
+        </p>
+<div class="flex flex-col sm:flex-row items-center gap-5 w-full sm:w-auto opacity-0 animate-fade-in-up" style="animation-delay: 0.7s;">
+<button onclick="location.href='contact.html'" class="group relative w-full sm:w-auto overflow-hidden rounded-xl bg-primary p-[1px] transition-all hover:bg-gradient-to-r hover:from-primary hover:to-accent shadow-[0_0_30px_-5px_rgba(59,130,246,0.4)] hover:shadow-[0_0_60px_-10px_rgba(59,130,246,0.8)] hover:scale-105 active:scale-95 duration-300">
+<div class="relative flex h-14 w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary-dark to-primary px-8 transition-all group-hover:bg-opacity-0 z-10">
+<span class="font-bold text-white tracking-wide">Initiate Sequence</span>
+<span class="material-symbols-outlined text-white transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">rocket_launch</span>
+</div>
+<div class="absolute inset-0 bg-white/20 skew-x-12 translate-x-[-150%] group-hover:animate-shimmer z-20"></div>
+</button>
+<button onclick="location.href='#methodology'" class="group w-full sm:w-auto flex items-center justify-center gap-2 h-14 px-8 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-white/30 text-white font-bold tracking-wide transition-all hover:scale-105 active:scale-95 duration-300 shadow-[0_4px_20px rgba(0,0,0,0.3)] hover:shadow-[0_4px_30px rgba(255,255,255,0.1)]">
+<span>View Methodology</span>
+<span class="material-symbols-outlined text-sm text-slate-400 group-hover:text-white transition-colors duration-300 group-hover:rotate-180">expand_more</span>
+</button>
+</div>
+</div>
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-0 animate-fade-in-up cursor-pointer group" style="animation-delay: 1.2s;">
+<span class="text-[10px] uppercase tracking-[0.3em] text-slate-500 group-hover:text-primary transition-colors duration-300">Scroll to Explore</span>
+<div class="h-12 w-[1px] bg-gradient-to-b from-transparent via-slate-500 to-transparent relative overflow-hidden group-hover:h-16 transition-all duration-300">
+<div class="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-transparent to-primary animate-[shimmer_2s_infinite]"></div>
+</div>
+</div>
+</main>
+<section class="relative py-32 bg-surface-dark overflow-hidden border-t border-white/5" id="methodology">
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03]"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-background-dark via-transparent to-background-dark"></div>
+<div class="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent z-0 transform -translate-y-1/2"></div>
+<div class="max-w-[1920px] mx-auto px-6 relative z-10">
+<div class="text-center mb-16 relative">
+<span class="text-accent font-mono text-sm tracking-widest uppercase mb-2 block animate-pulse">Protocol 01</span>
+<h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">The 10-Step <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent relative inline-block">Evolution Sequence</span></h2>
+<p class="text-slate-400 max-w-2xl mx-auto text-lg">A unified, continuous integration of vision and execution. Hover to inspect the genetic code of your product.</p>
+</div>
+<div class="w-full overflow-x-auto pb-12 hide-scrollbar cursor-grab active:cursor-grabbing">
+<div class="flex items-center justify-start md:justify-center gap-[2px] min-w-max px-6 h-[420px] relative">
+<div class="w-2 h-[420px] rounded-l-2xl bg-white/5 border-y border-l border-white/10 hidden md:block"></div>
+<div class="method-card group relative h-full bg-[#0B1120] border-y border-r border-white/10 overflow-hidden flex-shrink-0 first:rounded-l-2xl md:first:rounded-l-none last:rounded-r-2xl cursor-none hover:z-20 hover:border-primary/50 hover:shadow-[0_0_50px_rgba(59,130,246,0.3)] hover:bg-[#0f172a]">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="absolute top-0 left-0 w-[2px] h-full bg-primary/50 opacity-0 group-hover:opacity-100 transition-opacity shadow-[0_0_10px_rgba(59,130,246,0.8)]"></div>
+<div class="absolute inset-0 w-[70px] flex flex-col items-center justify-between py-10 pointer-events-none z-10">
+<span class="step-number text-primary/50 font-mono text-xs font-bold">01</span>
+<div class="glyph-icon text-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">lightbulb</span>
+</div>
+<h3 class="rotate-text text-sm font-bold text-slate-400 tracking-[0.2em] uppercase">Discovery</h3>
+</div>
+<div class="content-reveal absolute left-[70px] top-0 h-full flex flex-col justify-center pr-8 z-20">
+<div class="mb-6">
+<h3 class="text-3xl font-display font-bold text-white mb-2">Idea Discovery</h3>
+<div class="h-[1px] w-20 bg-primary mb-4"></div>
+<p class="text-slate-400 text-sm leading-relaxed max-w-[280px]">
+                                We extract the core value proposition. Understanding the 'why' before the 'what' to align technology with business goals.
+                            </p>
+</div>
+<div class="bg-black/40 border border-white/10 rounded-lg p-3 backdrop-blur-md relative overflow-hidden group-hover:border-primary/30 transition-colors">
+<div class="absolute left-0 top-0 w-[2px] h-full bg-primary"></div>
+<span class="text-[10px] uppercase tracking-widest text-primary font-bold mb-1 flex items-center gap-2">
+                                Output <span class="material-symbols-outlined text-[10px] animate-pulse">data_object</span>
+</span>
+<div class="text-xs text-slate-200 font-mono">Vision Document &amp; Market Fit Analysis</div>
+</div>
+</div>
+</div>
+<div class="method-card group relative h-full bg-[#0B1120] border-y border-r border-white/10 overflow-hidden flex-shrink-0 cursor-none hover:z-20 hover:border-accent/50 hover:shadow-[0_0_50px_rgba(6,182,212,0.3)] hover:bg-[#0f172a]">
+<div class="absolute inset-0 bg-gradient-to-r from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="absolute top-0 left-0 w-[2px] h-full bg-accent/50 opacity-0 group-hover:opacity-100 transition-opacity shadow-[0_0_10px_rgba(6,182,212,0.8)]"></div>
+<div class="absolute inset-0 w-[70px] flex flex-col items-center justify-between py-10 pointer-events-none z-10">
+<span class="step-number text-accent/50 font-mono text-xs font-bold">02</span>
+<div class="glyph-icon text-accent group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">psychology_alt</span>
+</div>
+<h3 class="rotate-text text-sm font-bold text-slate-400 tracking-[0.2em] uppercase">Storming</h3>
+</div>
+<div class="content-reveal absolute left-[70px] top-0 h-full flex flex-col justify-center pr-8 z-20">
+<div class="mb-6">
+<h3 class="text-3xl font-display font-bold text-white mb-2">Brainstorming</h3>
+<div class="h-[1px] w-20 bg-accent mb-4"></div>
+<p class="text-slate-400 text-sm leading-relaxed max-w-[280px]">
+                                Divergent thinking to explore all technical avenues. No idea is too radical as we map the possibilities.
+                            </p>
+</div>
+<div class="bg-black/40 border border-white/10 rounded-lg p-3 backdrop-blur-md relative overflow-hidden group-hover:border-accent/30 transition-colors">
+<div class="absolute left-0 top-0 w-[2px] h-full bg-accent"></div>
+<span class="text-[10px] uppercase tracking-widest text-accent font-bold mb-1 flex items-center gap-2">
+                                Output <span class="material-symbols-outlined text-[10px] animate-pulse">data_object</span>
+</span>
+<div class="text-xs text-slate-200 font-mono">Feature Matrix &amp; Tech Stack Options</div>
+</div>
+</div>
+</div>
+<div class="method-card group relative h-full bg-[#0B1120] border-y border-r border-white/10 overflow-hidden flex-shrink-0 cursor-none hover:z-20 hover:border-purple-500/50 hover:shadow-[0_0_50px_rgba(168,85,247,0.3)] hover:bg-[#0f172a]">
+<div class="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="absolute top-0 left-0 w-[2px] h-full bg-purple-500/50 opacity-0 group-hover:opacity-100 transition-opacity shadow-[0_0_10px_rgba(168,85,247,0.8)]"></div>
+<div class="absolute inset-0 w-[70px] flex flex-col items-center justify-between py-10 pointer-events-none z-10">
+<span class="step-number text-purple-400/50 font-mono text-xs font-bold">03</span>
+<div class="glyph-icon text-purple-400 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">architecture</span>
+</div>
+<h3 class="rotate-text text-sm font-bold text-slate-400 tracking-[0.2em] uppercase">Architecture</h3>
+</div>
+<div class="content-reveal absolute left-[70px] top-0 h-full flex flex-col justify-center pr-8 z-20">
+<div class="mb-6">
+<h3 class="text-3xl font-display font-bold text-white mb-2">Solution Design</h3>
+<div class="h-[1px] w-20 bg-purple-500 mb-4"></div>
+<p class="text-slate-400 text-sm leading-relaxed max-w-[280px]">
+                                Architecting the system's skeleton. Data flow, security protocols, and integration points defined with precision.
+                            </p>
+</div>
+<div class="bg-black/40 border border-white/10 rounded-lg p-3 backdrop-blur-md relative overflow-hidden group-hover:border-purple-500/30 transition-colors">
+<div class="absolute left-0 top-0 w-[2px] h-full bg-purple-500"></div>
+<span class="text-[10px] uppercase tracking-widest text-purple-400 font-bold mb-1 flex items-center gap-2">
+                                Output <span class="material-symbols-outlined text-[10px] animate-pulse">data_object</span>
+</span>
+<div class="text-xs text-slate-200 font-mono">System Architecture Blueprint</div>
+</div>
+</div>
+</div>
+<div class="method-card group relative h-full bg-[#0B1120] border-y border-r border-white/10 overflow-hidden flex-shrink-0 cursor-none hover:z-20 hover:border-pink-500/50 hover:shadow-[0_0_50px_rgba(236,72,153,0.3)] hover:bg-[#0f172a]">
+<div class="absolute inset-0 bg-gradient-to-r from-pink-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="absolute top-0 left-0 w-[2px] h-full bg-pink-500/50 opacity-0 group-hover:opacity-100 transition-opacity shadow-[0_0_10px_rgba(236,72,153,0.8)]"></div>
+<div class="absolute inset-0 w-[70px] flex flex-col items-center justify-between py-10 pointer-events-none z-10">
+<span class="step-number text-pink-400/50 font-mono text-xs font-bold">04</span>
+<div class="glyph-icon text-pink-400 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">map</span>
+</div>
+<h3 class="rotate-text text-sm font-bold text-slate-400 tracking-[0.2em] uppercase">Roadmap</h3>
+</div>
+<div class="content-reveal absolute left-[70px] top-0 h-full flex flex-col justify-center pr-8 z-20">
+<div class="mb-6">
+<h3 class="text-3xl font-display font-bold text-white mb-2">Strategic Roadmap</h3>
+<div class="h-[1px] w-20 bg-pink-500 mb-4"></div>
+<p class="text-slate-400 text-sm leading-relaxed max-w-[280px]">
+                                Defining milestones and sprints. We prioritize high-impact features for the MVP to ensure rapid time-to-value.
+                            </p>
+</div>
+<div class="bg-black/40 border border-white/10 rounded-lg p-3 backdrop-blur-md relative overflow-hidden group-hover:border-pink-500/30 transition-colors">
+<div class="absolute left-0 top-0 w-[2px] h-full bg-pink-500"></div>
+<span class="text-[10px] uppercase tracking-widest text-pink-400 font-bold mb-1 flex items-center gap-2">
+                                Output <span class="material-symbols-outlined text-[10px] animate-pulse">data_object</span>
+</span>
+<div class="text-xs text-slate-200 font-mono">Product Timeline &amp; Sprint Plan</div>
+</div>
+</div>
+</div>
+<div class="method-card group relative h-full bg-[#0B1120] border-y border-r border-white/10 overflow-hidden flex-shrink-0 cursor-none hover:z-20 hover:border-amber-500/50 hover:shadow-[0_0_50px_rgba(245,158,11,0.3)] hover:bg-[#0f172a]">
+<div class="absolute inset-0 bg-gradient-to-r from-amber-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="absolute top-0 left-0 w-[2px] h-full bg-amber-500/50 opacity-0 group-hover:opacity-100 transition-opacity shadow-[0_0_10px_rgba(245,158,11,0.8)]"></div>
+<div class="absolute inset-0 w-[70px] flex flex-col items-center justify-between py-10 pointer-events-none z-10">
+<span class="step-number text-amber-400/50 font-mono text-xs font-bold">05</span>
+<div class="glyph-icon text-amber-400 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">palette</span>
+</div>
+<h3 class="rotate-text text-sm font-bold text-slate-400 tracking-[0.2em] uppercase">Design</h3>
+</div>
+<div class="content-reveal absolute left-[70px] top-0 h-full flex flex-col justify-center pr-8 z-20">
+<div class="mb-6">
+<h3 class="text-3xl font-display font-bold text-white mb-2">UI/UX Design</h3>
+<div class="h-[1px] w-20 bg-amber-500 mb-4"></div>
+<p class="text-slate-400 text-sm leading-relaxed max-w-[280px]">
+                                Crafting high-fidelity UIs and intuitive UX flows. We design for emotion, engagement, and accessibility.
+                            </p>
+</div>
+<div class="bg-black/40 border border-white/10 rounded-lg p-3 backdrop-blur-md relative overflow-hidden group-hover:border-amber-500/30 transition-colors">
+<div class="absolute left-0 top-0 w-[2px] h-full bg-amber-500"></div>
+<span class="text-[10px] uppercase tracking-widest text-amber-400 font-bold mb-1 flex items-center gap-2">
+                                Output <span class="material-symbols-outlined text-[10px] animate-pulse">data_object</span>
+</span>
+<div class="text-xs text-slate-200 font-mono">Interactive Prototypes</div>
+</div>
+</div>
+</div>
+<div class="method-card group relative h-full bg-[#0B1120] border-y border-r border-white/10 overflow-hidden flex-shrink-0 cursor-none hover:z-20 hover:border-emerald-500/50 hover:shadow-[0_0_50px_rgba(16,185,129,0.3)] hover:bg-[#0f172a]">
+<div class="absolute inset-0 bg-gradient-to-r from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="absolute top-0 left-0 w-[2px] h-full bg-emerald-500/50 opacity-0 group-hover:opacity-100 transition-opacity shadow-[0_0_10px_rgba(16,185,129,0.8)]"></div>
+<div class="absolute inset-0 w-[70px] flex flex-col items-center justify-between py-10 pointer-events-none z-10">
+<span class="step-number text-emerald-400/50 font-mono text-xs font-bold">06</span>
+<div class="glyph-icon text-emerald-400 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">developer_board</span>
+</div>
+<h3 class="rotate-text text-sm font-bold text-slate-400 tracking-[0.2em] uppercase">Build</h3>
+</div>
+<div class="content-reveal absolute left-[70px] top-0 h-full flex flex-col justify-center pr-8 z-20">
+<div class="mb-6">
+<h3 class="text-3xl font-display font-bold text-white mb-2">Development</h3>
+<div class="h-[1px] w-20 bg-emerald-500 mb-4"></div>
+<p class="text-slate-400 text-sm leading-relaxed max-w-[280px]">
+                                Writing clean, scalable code. Implementing core logic, AI models, and database structures with modern best practices.
+                            </p>
+</div>
+<div class="bg-black/40 border border-white/10 rounded-lg p-3 backdrop-blur-md relative overflow-hidden group-hover:border-emerald-500/30 transition-colors">
+<div class="absolute left-0 top-0 w-[2px] h-full bg-emerald-500"></div>
+<span class="text-[10px] uppercase tracking-widest text-emerald-400 font-bold mb-1 flex items-center gap-2">
+                                Output <span class="material-symbols-outlined text-[10px] animate-pulse">data_object</span>
+</span>
+<div class="text-xs text-slate-200 font-mono">Functional MVP &amp; Source Code</div>
+</div>
+</div>
+</div>
+<div class="method-card group relative h-full bg-[#0B1120] border-y border-r border-white/10 overflow-hidden flex-shrink-0 cursor-none hover:z-20 hover:border-rose-500/50 hover:shadow-[0_0_50px_rgba(244,63,94,0.3)] hover:bg-[#0f172a]">
+<div class="absolute inset-0 bg-gradient-to-r from-rose-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="absolute top-0 left-0 w-[2px] h-full bg-rose-500/50 opacity-0 group-hover:opacity-100 transition-opacity shadow-[0_0_10px_rgba(244,63,94,0.8)]"></div>
+<div class="absolute inset-0 w-[70px] flex flex-col items-center justify-between py-10 pointer-events-none z-10">
+<span class="step-number text-rose-400/50 font-mono text-xs font-bold">07</span>
+<div class="glyph-icon text-rose-400 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">bug_report</span>
+</div>
+<h3 class="rotate-text text-sm font-bold text-slate-400 tracking-[0.2em] uppercase">Test</h3>
+</div>
+<div class="content-reveal absolute left-[70px] top-0 h-full flex flex-col justify-center pr-8 z-20">
+<div class="mb-6">
+<h3 class="text-3xl font-display font-bold text-white mb-2">Quality Assurance</h3>
+<div class="h-[1px] w-20 bg-rose-500 mb-4"></div>
+<p class="text-slate-400 text-sm leading-relaxed max-w-[280px]">
+                                Rigorous QA, security auditing, and performance stress testing to ensure rock-solid stability.
+                            </p>
+</div>
+<div class="bg-black/40 border border-white/10 rounded-lg p-3 backdrop-blur-md relative overflow-hidden group-hover:border-rose-500/30 transition-colors">
+<div class="absolute left-0 top-0 w-[2px] h-full bg-rose-500"></div>
+<span class="text-[10px] uppercase tracking-widest text-rose-400 font-bold mb-1 flex items-center gap-2">
+                                Output <span class="material-symbols-outlined text-[10px] animate-pulse">data_object</span>
+</span>
+<div class="text-xs text-slate-200 font-mono">QA Reports &amp; Security Audit</div>
+</div>
+</div>
+</div>
+<div class="method-card group relative h-full bg-[#0B1120] border-y border-r border-white/10 overflow-hidden flex-shrink-0 cursor-none hover:z-20 hover:border-sky-500/50 hover:shadow-[0_0_50px_rgba(14,165,233,0.3)] hover:bg-[#0f172a]">
+<div class="absolute inset-0 bg-gradient-to-r from-sky-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="absolute top-0 left-0 w-[2px] h-full bg-sky-500/50 opacity-0 group-hover:opacity-100 transition-opacity shadow-[0_0_10px_rgba(14,165,233,0.8)]"></div>
+<div class="absolute inset-0 w-[70px] flex flex-col items-center justify-between py-10 pointer-events-none z-10">
+<span class="step-number text-sky-400/50 font-mono text-xs font-bold">08</span>
+<div class="glyph-icon text-sky-400 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">thumb_up</span>
+</div>
+<h3 class="rotate-text text-sm font-bold text-slate-400 tracking-[0.2em] uppercase">Accept</h3>
+</div>
+<div class="content-reveal absolute left-[70px] top-0 h-full flex flex-col justify-center pr-8 z-20">
+<div class="mb-6">
+<h3 class="text-3xl font-display font-bold text-white mb-2">UAT &amp; Sign-off</h3>
+<div class="h-[1px] w-20 bg-sky-500 mb-4"></div>
+<p class="text-slate-400 text-sm leading-relaxed max-w-[280px]">
+                                Client validation and UAT. Ensuring the solution meets all success criteria and business goals before launch.
+                            </p>
+</div>
+<div class="bg-black/40 border border-white/10 rounded-lg p-3 backdrop-blur-md relative overflow-hidden group-hover:border-sky-500/30 transition-colors">
+<div class="absolute left-0 top-0 w-[2px] h-full bg-sky-500"></div>
+<span class="text-[10px] uppercase tracking-widest text-sky-400 font-bold mb-1 flex items-center gap-2">
+                                Output <span class="material-symbols-outlined text-[10px] animate-pulse">data_object</span>
+</span>
+<div class="text-xs text-slate-200 font-mono">Sign-off &amp; UAT Completion</div>
+</div>
+</div>
+</div>
+<div class="method-card group relative h-full bg-[#0B1120] border-y border-r border-white/10 overflow-hidden flex-shrink-0 cursor-none hover:z-20 hover:border-orange-500/50 hover:shadow-[0_0_50px_rgba(249,115,22,0.3)] hover:bg-[#0f172a]">
+<div class="absolute inset-0 bg-gradient-to-r from-orange-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="absolute top-0 left-0 w-[2px] h-full bg-orange-500/50 opacity-0 group-hover:opacity-100 transition-opacity shadow-[0_0_10px_rgba(249,115,22,0.8)]"></div>
+<div class="absolute inset-0 w-[70px] flex flex-col items-center justify-between py-10 pointer-events-none z-10">
+<span class="step-number text-orange-400/50 font-mono text-xs font-bold">09</span>
+<div class="glyph-icon text-orange-400 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">rocket_launch</span>
+</div>
+<h3 class="rotate-text text-sm font-bold text-slate-400 tracking-[0.2em] uppercase">Release</h3>
+</div>
+<div class="content-reveal absolute left-[70px] top-0 h-full flex flex-col justify-center pr-8 z-20">
+<div class="mb-6">
+<h3 class="text-3xl font-display font-bold text-white mb-2">Deployment</h3>
+<div class="h-[1px] w-20 bg-orange-500 mb-4"></div>
+<p class="text-slate-400 text-sm leading-relaxed max-w-[280px]">
+                                Deployment to production environments. Configuring CI/CD pipelines for seamless future updates.
+                            </p>
+</div>
+<div class="bg-black/40 border border-white/10 rounded-lg p-3 backdrop-blur-md relative overflow-hidden group-hover:border-orange-500/30 transition-colors">
+<div class="absolute left-0 top-0 w-[2px] h-full bg-orange-500"></div>
+<span class="text-[10px] uppercase tracking-widest text-orange-400 font-bold mb-1 flex items-center gap-2">
+                                Output <span class="material-symbols-outlined text-[10px] animate-pulse">data_object</span>
+</span>
+<div class="text-xs text-slate-200 font-mono">Live Product &amp; Deployment Logs</div>
+</div>
+</div>
+</div>
+<div class="method-card group relative h-full bg-[#0B1120] border-y border-r border-white/10 overflow-hidden flex-shrink-0 last:rounded-r-2xl cursor-none hover:z-20 hover:border-violet-500/50 hover:shadow-[0_0_50px_rgba(139,92,246,0.3)] hover:bg-[#0f172a]">
+<div class="absolute inset-0 bg-gradient-to-r from-violet-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="absolute top-0 left-0 w-[2px] h-full bg-violet-500/50 opacity-0 group-hover:opacity-100 transition-opacity shadow-[0_0_10px_rgba(139,92,246,0.8)]"></div>
+<div class="absolute inset-0 w-[70px] flex flex-col items-center justify-between py-10 pointer-events-none z-10">
+<span class="step-number text-violet-400/50 font-mono text-xs font-bold">10</span>
+<div class="glyph-icon text-violet-400 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">all_inclusive</span>
+</div>
+<h3 class="rotate-text text-sm font-bold text-slate-400 tracking-[0.2em] uppercase">Iterate</h3>
+</div>
+<div class="content-reveal absolute left-[70px] top-0 h-full flex flex-col justify-center pr-8 z-20">
+<div class="mb-6">
+<h3 class="text-3xl font-display font-bold text-white mb-2">Evolution</h3>
+<div class="h-[1px] w-20 bg-violet-500 mb-4"></div>
+<p class="text-slate-400 text-sm leading-relaxed max-w-[280px]">
+                                Analyzing user data, gathering feedback, and planning the next version for continuous improvement.
+                            </p>
+</div>
+<div class="bg-black/40 border border-white/10 rounded-lg p-3 backdrop-blur-md relative overflow-hidden group-hover:border-violet-500/30 transition-colors">
+<div class="absolute left-0 top-0 w-[2px] h-full bg-violet-500"></div>
+<span class="text-[10px] uppercase tracking-widest text-violet-400 font-bold mb-1 flex items-center gap-2">
+                                Output <span class="material-symbols-outlined text-[10px] animate-pulse">data_object</span>
+</span>
+<div class="text-xs text-slate-200 font-mono">Analytics Report &amp; V2 Roadmap</div>
+</div>
+</div>
+</div>
+<div class="w-2 h-[420px] rounded-r-2xl bg-white/5 border-y border-r border-white/10 hidden md:block"></div>
+</div>
+</div>
+</div>
+</section>
+<section class="relative py-32 bg-background-dark overflow-hidden" id="bot-model">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.05)_0%,transparent_70%)] pointer-events-none"></div>
+<div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 size-96 bg-purple-glow/10 rounded-full blur-[120px] pointer-events-none animate-pulse-slow"></div>
+<div class="max-w-7xl mx-auto px-6 relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="space-y-8">
+<div>
+<span class="text-purple-400 font-mono text-sm tracking-widest uppercase mb-2 block">Protocol 02</span>
+<h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-4">The <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 hover:tracking-widest transition-all duration-500 cursor-default animate-hologram-pulse">B.O.T.</span> Engine</h2>
+<p class="text-slate-400 text-lg leading-relaxed">Our engagement model is designed for complete knowledge transfer. We don't just build for you; we build your capacity to lead.</p>
+</div>
+<div class="space-y-4">
+<div class="group p-6 rounded-xl bg-white/5 border border-white/10 hover:border-blue-500/50 hover:bg-blue-500/5 transition-all duration-300 cursor-none hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(59,130,246,0.2)]">
+<div class="flex items-center gap-4 mb-2">
+<div class="p-2 rounded bg-blue-500/20 text-blue-400 group-hover:animate-bounce"><span class="material-symbols-outlined">construction</span></div>
+<h3 class="text-xl font-bold text-white">Build</h3>
+</div>
+<p class="text-slate-400 pl-[3.25rem]">We assemble a dedicated, cross-functional team to develop your MVP using our standardized tech stack.</p>
+</div>
+<div class="group p-6 rounded-xl bg-white/5 border border-white/10 hover:border-purple-500/50 hover:bg-purple-500/5 transition-all duration-300 cursor-none hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(168,85,247,0.2)]">
+<div class="flex items-center gap-4 mb-2">
+<div class="p-2 rounded bg-purple-500/20 text-purple-400 group-hover:animate-spin-slow"><span class="material-symbols-outlined">settings_suggest</span></div>
+<h3 class="text-xl font-bold text-white">Operate</h3>
+</div>
+<p class="text-slate-400 pl-[3.25rem]">We manage the product, iterate on features, and optimize operations while training your internal team.</p>
+</div>
+<div class="group p-6 rounded-xl bg-white/5 border border-white/10 hover:border-pink-500/50 hover:bg-pink-500/5 transition-all duration-300 cursor-none hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(236,72,153,0.2)]">
+<div class="flex items-center gap-4 mb-2">
+<div class="p-2 rounded bg-pink-500/20 text-pink-400 group-hover:translate-x-2 transition-transform"><span class="material-symbols-outlined">move_up</span></div>
+<h3 class="text-xl font-bold text-white">Transfer</h3>
+</div>
+<p class="text-slate-400 pl-[3.25rem]">Full handover of code, documentation, and operational processes. We hire and train your permanent staff.</p>
+</div>
+</div>
+</div>
+<div class="relative h-[600px] w-full flex items-center justify-center perspective-1000">
+<div class="absolute inset-0 bg-cyber-grid bg-[length:30px_30px] opacity-20 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_70%)] animate-pulse-slow"></div>
+<div class="relative z-10 size-64 rounded-full border border-white/10 bg-surface-dark flex items-center justify-center shadow-[0_0_100px_rgba(59,130,246,0.2)] animate-float cursor-none hover:shadow-[0_0_150px_rgba(59,130,246,0.5)] transition-shadow duration-500 group interactive-bg-element" data-speed="0.05">
+<div class="absolute inset-[-20px] border border-white/5 rounded-full animate-spin-slow border-dashed opacity-50"></div>
+<div class="absolute inset-[-40px] border border-primary/10 rounded-full animate-spin-reverse opacity-30"></div>
+<div class="absolute inset-2 border border-dashed border-white/20 rounded-full animate-spin-slow group-hover:border-primary/50"></div>
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-purple-500/20 rounded-full blur-xl group-hover:blur-2xl transition-all"></div>
+<span class="material-symbols-outlined text-6xl text-white/80 group-hover:scale-125 transition-transform duration-500">deployed_code</span>
+</div>
+<div class="absolute top-1/4 right-10 p-4 glass-card rounded-lg animate-float-reverse shadow-lg z-20 hover:scale-110 transition-transform cursor-pointer interactive-bg-element" data-speed="0.1">
+<div class="scanline"></div>
+<div class="text-xs text-slate-400 uppercase tracking-wider mb-1">Status</div>
+<div class="text-green-400 font-mono font-bold flex items-center gap-2">
+<span class="size-2 rounded-full bg-green-400 animate-pulse"></span> Operational
+                    </div>
+</div>
+<div class="absolute bottom-1/4 left-10 p-4 glass-card rounded-lg animate-float shadow-lg z-20 hover:scale-110 transition-transform cursor-pointer interactive-bg-element" data-speed="0.12">
+<div class="scanline" style="animation-delay: 1s;"></div>
+<div class="text-xs text-slate-400 uppercase tracking-wider mb-1">Codebase</div>
+<div class="text-blue-400 font-mono font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">verified</span> Verified
+                    </div>
+</div>
+<div class="absolute top-2/3 right-1/4 p-3 glass-card rounded-lg animate-float shadow-lg z-10 scale-90 opacity-80 hover:scale-100 hover:opacity-100 transition-all cursor-pointer interactive-bg-element" data-speed="0.08">
+<div class="text-[10px] text-slate-400 uppercase tracking-wider mb-1">Uptime</div>
+<div class="text-purple-400 font-mono font-bold text-xs">99.99%</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="relative py-32 bg-surface-dark border-t border-white/5 relative overflow-hidden min-h-screen flex items-center" id="audience">
+<div class="absolute inset-0 bg-gradient-to-b from-surface-dark via-background-dark to-surface-dark z-0 pointer-events-none"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[1000px] bg-primary/5 rounded-full blur-[100px] pointer-events-none animate-pulse-slow"></div>
+<div class="max-w-7xl mx-auto px-6 relative z-10 w-full h-full flex flex-col justify-center items-center">
+<div class="text-center mb-10 z-20 relative">
+<h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-4 tracking-tight">Architects of the Future</h2>
+<p class="text-lg text-slate-400 max-w-2xl mx-auto">The ecosystem orbits around innovation.</p>
+</div>
+<div class="relative w-full h-[800px] flex items-center justify-center perspective-[1000px]">
+<div class="absolute size-[500px] md:size-[600px] border border-white/5 rounded-full animate-spin-slow pointer-events-none opacity-30"></div>
+<div class="absolute size-[300px] md:size-[400px] border border-dashed border-white/10 rounded-full animate-spin-reverse pointer-events-none opacity-40"></div>
+<div class="relative z-10 size-32 md:size-48 rounded-full bg-surface-dark border border-white/10 flex items-center justify-center shadow-[0_0_80px_rgba(59,130,246,0.3)] animate-pulse-slow">
+<div class="absolute inset-0 bg-primary/20 rounded-full blur-xl"></div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-4xl md:text-5xl text-white mb-2">hub</span>
+<span class="text-xs font-bold text-primary uppercase tracking-widest">Core</span>
+</div>
+<svg class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] pointer-events-none opacity-20" xmlns="http://www.w3.org/2000/svg">
+<line stroke="url(#lineGradient)" stroke-width="1" x1="50%" x2="15%" y1="50%" y2="20%"></line>
+<line stroke="url(#lineGradient)" stroke-width="1" x1="50%" x2="85%" y1="50%" y2="20%"></line>
+<line stroke="url(#lineGradient)" stroke-width="1" x1="50%" x2="15%" y1="50%" y2="80%"></line>
+<line stroke="url(#lineGradient)" stroke-width="1" x1="50%" x2="85%" y1="50%" y2="80%"></line>
+<defs>
+<linearGradient gradientTransform="rotate(90)" id="lineGradient">
+<stop offset="0%" stop-color="#3b82f6"></stop>
+<stop offset="100%" stop-color="transparent"></stop>
+</linearGradient>
+</defs>
+</svg>
+</div>
+<div class="absolute top-[5%] left-[5%] md:top-[10%] md:left-[10%] group animate-float" style="animation-duration: 9s;">
+<div class="glass-card p-6 rounded-2xl w-64 md:w-72 border-l-4 border-primary transition-all duration-300 hover:scale-110 hover:shadow-[0_0_40px_rgba(59,130,246,0.4)] backdrop-blur-xl hover:z-50 cursor-pointer">
+<div class="flex items-center gap-3 mb-3">
+<div class="p-2 rounded-lg bg-primary/20 text-primary">
+<span class="material-symbols-outlined">lightbulb</span>
+</div>
+<span class="text-xs font-mono text-primary/80 uppercase tracking-widest">0 → 1</span>
+</div>
+<h3 class="text-lg font-bold text-white mb-2">Visionary Founders</h3>
+<p class="text-slate-400 text-xs leading-relaxed">Transforming abstract ideas into tangible realities. Precision engineering.</p>
+</div>
+</div>
+<div class="absolute top-[5%] right-[5%] md:top-[15%] md:right-[15%] group animate-float-reverse" style="animation-duration: 11s; animation-delay: 1s;">
+<div class="glass-card p-6 rounded-2xl w-64 md:w-72 border-l-4 border-accent transition-all duration-300 hover:scale-110 hover:shadow-[0_0_40px_rgba(6,182,212,0.4)] backdrop-blur-xl hover:z-50 cursor-pointer">
+<div class="flex items-center gap-3 mb-3">
+<div class="p-2 rounded-lg bg-accent/20 text-accent">
+<span class="material-symbols-outlined">apartment</span>
+</div>
+<span class="text-xs font-mono text-accent/80 uppercase tracking-widest">Scale</span>
+</div>
+<h3 class="text-lg font-bold text-white mb-2">Enterprise Leaders</h3>
+<p class="text-slate-400 text-xs leading-relaxed">Injecting startup velocity into corporate structures. Modernization without friction.</p>
+</div>
+</div>
+<div class="absolute bottom-[5%] left-[5%] md:bottom-[15%] md:left-[15%] group animate-float" style="animation-duration: 10s; animation-delay: 2s;">
+<div class="glass-card p-6 rounded-2xl w-64 md:w-72 border-l-4 border-purple-500 transition-all duration-300 hover:scale-110 hover:shadow-[0_0_40px_rgba(168,85,247,0.4)] backdrop-blur-xl hover:z-50 cursor-pointer">
+<div class="flex items-center gap-3 mb-3">
+<div class="p-2 rounded-lg bg-purple-500/20 text-purple-400">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<span class="text-xs font-mono text-purple-400/80 uppercase tracking-widest">Derisk</span>
+</div>
+<h3 class="text-lg font-bold text-white mb-2">Venture Capital</h3>
+<p class="text-slate-400 text-xs leading-relaxed">Technical due diligence and rapid scaling partners. Ensuring portfolio success.</p>
+</div>
+</div>
+<div class="absolute bottom-[5%] right-[5%] md:bottom-[10%] md:right-[10%] group animate-float-reverse" style="animation-duration: 12s; animation-delay: 3s;">
+<div class="glass-card p-6 rounded-2xl w-64 md:w-72 border-l-4 border-rose-500 transition-all duration-300 hover:scale-110 hover:shadow-[0_0_50px_rgba(244,63,94,0.6)] backdrop-blur-xl hover:z-50 cursor-pointer relative overflow-hidden">
+<div class="absolute inset-0 bg-rose-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
+<div class="flex items-center gap-3 mb-3 relative z-10">
+<div class="p-2 rounded-lg bg-rose-500/20 text-rose-400 group-hover:bg-rose-500 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">rocket</span>
+</div>
+<span class="text-xs font-mono text-rose-400/80 uppercase tracking-widest">Ignite</span>
+</div>
+<h3 class="text-lg font-bold text-white mb-2 relative z-10">Aspiring Entrepreneur</h3>
+<p class="text-slate-400 text-xs leading-relaxed relative z-10">From napkin sketch to MVP. We provide the technical backbone for your breakthrough idea.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="relative py-32 bg-background-dark overflow-hidden" id="differentiators">
+<div class="absolute inset-0 w-full h-full opacity-20 pointer-events-none">
+<div class="absolute top-0 -left-1/4 w-1/2 h-full bg-primary/20 blur-[150px] transform skew-x-12 animate-pulse-slow"></div>
+<div class="absolute bottom-0 -right-1/4 w-1/2 h-full bg-accent/20 blur-[150px] transform -skew-x-12 animate-pulse-slow" style="animation-delay: 2s"></div>
+</div>
+<div class="max-w-7xl mx-auto px-6 relative z-10">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="group p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm text-center hover:bg-white/10 transition-all hover:scale-105 hover:shadow-[0_0_30px_-5px_rgba(59,130,246,0.3)] cursor-none">
+<div class="text-4xl font-bold text-white mb-2 font-display group-hover:text-primary transition-colors">40%</div>
+<div class="text-sm text-slate-400 uppercase tracking-widest group-hover:tracking-[0.2em] transition-all">Faster Time-to-Market</div>
+</div>
+<div class="group p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm text-center hover:bg-white/10 transition-all hover:scale-105 hover:shadow-[0_0_30px_-5px_rgba(6,182,212,0.3)] cursor-none">
+<div class="text-4xl font-bold text-white mb-2 font-display group-hover:text-accent transition-colors">99.9%</div>
+<div class="text-sm text-slate-400 uppercase tracking-widest group-hover:tracking-[0.2em] transition-all">Uptime Guarantee</div>
+</div>
+<div class="group p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm text-center hover:bg-white/10 transition-all hover:scale-105 hover:shadow-[0_0_30px_-5px_rgba(168,85,247,0.3)] cursor-none">
+<div class="text-4xl font-bold text-white mb-2 font-display group-hover:text-purple-400 transition-colors">25+</div>
+<div class="text-sm text-slate-400 uppercase tracking-widest group-hover:tracking-[0.2em] transition-all">Unicorns Scaled</div>
+</div>
+<div class="group p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm text-center hover:bg-white/10 transition-all hover:scale-105 hover:shadow-[0_0_30px_-5px_rgba(236,72,153,0.3)] cursor-none">
+<div class="text-4xl font-bold text-white mb-2 font-display group-hover:text-pink-400 transition-colors">Global</div>
+<div class="text-sm text-slate-400 uppercase tracking-widest group-hover:tracking-[0.2em] transition-all">Distributed Teams</div>
+</div>
+</div>
+</div>
+</section>
+<section class="relative py-40 overflow-hidden flex items-center justify-center bg-[#050914]">
+<div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
+<div class="absolute inset-0 overflow-hidden pointer-events-none">
+<div class="absolute -top-[50%] -left-[50%] w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.1)_0%,transparent_50%)] animate-spin-slow opacity-30"></div>
+</div>
+<div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+<div class="inline-block mb-6 px-4 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-mono text-slate-300 animate-bounce cursor-default hover:text-primary transition-colors">
+            System Ready
+        </div>
+<h2 class="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tighter">Ready to <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-accent relative inline-block group cursor-none">
+            Transcend?
+            <span class="absolute bottom-0 left-0 w-full h-[5px] bg-gradient-to-r from-primary to-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></span>
+</span></h2>
+<p class="text-xl text-slate-400 mb-12 max-w-2xl mx-auto">
+            The technology of tomorrow is waiting. Let's build your legacy.
+        </p>
+<div class="flex flex-col md:flex-row items-center justify-center gap-6">
+<button class="relative group px-8 py-4 bg-white text-background-dark font-bold text-lg rounded-xl hover:scale-105 transition-all duration-300 shadow-[0_0_40px_rgba(255,255,255,0.3)] overflow-hidden">
+<span class="relative z-10 flex items-center gap-2">
+                    Start Your Project
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</span>
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-slate-200 to-transparent translate-x-[-100%] group-hover:animate-shimmer"></div>
+</button>
+<button class="px-8 py-4 rounded-xl border border-white/20 text-white font-medium hover:bg-white/5 transition-all hover:border-white/40 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+                Schedule Consultation
+            </button>
+</div>
+</div>
+<div class="absolute bottom-0 w-full overflow-hidden py-4 border-t border-white/5 bg-black/20 backdrop-blur-sm">
+<div class="whitespace-nowrap animate-marquee flex gap-10 opacity-30 hover:opacity-80 transition-opacity duration-500 cursor-default">
+<span class="text-2xl font-display font-bold text-white">SHAPMIND LABS</span>
+<span class="text-2xl font-display text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">* AI DRIVEN</span>
+<span class="text-2xl font-display font-bold text-white">FUTURE READY</span>
+<span class="text-2xl font-display text-transparent bg-clip-text bg-gradient-to-r from-accent to-purple-500">* SCALABLE ARCHITECTURE</span>
+<span class="text-2xl font-display font-bold text-white">SHAPMIND LABS</span>
+<span class="text-2xl font-display text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">* AI DRIVEN</span>
+<span class="text-2xl font-display font-bold text-white">FUTURE READY</span>
+<span class="text-2xl font-display text-transparent bg-clip-text bg-gradient-to-r from-accent to-purple-500">* SCALABLE ARCHITECTURE</span>
+<span class="text-2xl font-display font-bold text-white">SHAPMIND LABS</span>
+<span class="text-2xl font-display text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">* AI DRIVEN</span>
+<span class="text-2xl font-display font-bold text-white">FUTURE READY</span>
+<span class="text-2xl font-display text-transparent bg-clip-text bg-gradient-to-r from-accent to-purple-500">* SCALABLE ARCHITECTURE</span>
+</div>
+</div>
+</section>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const cursorContainer = document.getElementById('customCursor');
+        const cursorCore = cursorContainer.querySelector('.cursor-core');
+        const cursorRing = cursorContainer.querySelector('.cursor-ring');
+        const cursorTrail = cursorContainer.querySelector('.cursor-trail');
+        const interactiveElements = document.querySelectorAll('.interactive-bg-element');
+        let mouseX = 0;
+        let mouseY = 0;
+        let cursorX = 0;
+        let cursorY = 0;
+        let trailX = 0;
+        let trailY = 0;
+        // --- Enhanced Cursor & Parallax Logic ---
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            // Direct core movement
+            cursorContainer.style.left = `${mouseX}px`;
+            cursorContainer.style.top = `${mouseY}px`;
+            // Advanced Multi-Layer Parallax
+            interactiveElements.forEach((el) => {
+                const speed = parseFloat(el.getAttribute('data-speed')) || 0.05;
+                const x = (window.innerWidth / 2 - mouseX) * speed;
+                const y = (window.innerHeight / 2 - mouseY) * speed;
+                const rotateX = (mouseY / window.innerHeight - 0.5) * 5; 
+                const rotateY = (mouseX / window.innerWidth - 0.5) * 5;
+                el.style.transform = `translate(${x}px, ${y}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            // Reactive Lighting
+            const lightingCones = document.querySelectorAll('.volumetric-light');
+            lightingCones.forEach(cone => {
+                 cone.style.background = `radial-gradient(circle at ${mouseX}px ${mouseY}px, rgba(59,130,246,0.1), transparent 40%)`;
+            });
+        });
+        // Loop for smoother trail animation (Lerp)
+        function animateCursor() {
+            // Linear interpolation for smooth trailing
+            trailX += (mouseX - trailX) * 0.15;
+            trailY += (mouseY - trailY) * 0.15;
+            // Apply slight offset to ring for "weight" feel
+            cursorRing.style.transform = `translate(-50%, -50%) translate(${(mouseX - trailX) * -0.1}px, ${(mouseY - trailY) * -0.1}px)`;
+            // Trail scale based on movement speed
+            const speed = Math.sqrt(Math.pow(mouseX - trailX, 2) + Math.pow(mouseY - trailY, 2));
+            const scale = Math.min(1 + speed * 0.005, 1.5);
+            cursorTrail.style.transform = `translate(-50%, -50%) scale(${scale})`;
+            cursorTrail.style.opacity = speed > 1 ? 0.6 : 0; // Only show trail when moving
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+        // --- Matrix Rain Effect ---
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        const matrixContainer = document.getElementById('matrixRain');
+        if (matrixContainer && window.innerWidth > 768) {
+            matrixContainer.appendChild(canvas);
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            const chars = "010101010101"; 
+            const fontSize = 14;
+            const columns = canvas.width / fontSize;
+            const drops = [];
+            for (let i = 0; i < columns; i++) {
+                drops[i] = 1;
+            }
+            function drawMatrix() {
+                ctx.fillStyle = "rgba(2, 4, 8, 0.05)"; 
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = "#0f3a60"; 
+                ctx.font = fontSize + "px monospace";
+                for (let i = 0; i < drops.length; i++) {
+                    const text = chars.charAt(Math.floor(Math.random() * chars.length));
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    drops[i]++;
+                }
+            }
+            setInterval(drawMatrix, 50);
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        }
+        // --- Click Interactions (Enhanced Ripple) ---
+        window.addEventListener('mousedown', () => {
+            document.body.classList.add('is-active');
+        });
+        window.addEventListener('mouseup', () => {
+            document.body.classList.remove('is-active');
+        });
+        window.addEventListener('click', (e) => {
+            const ripple = document.createElement('div');
+            ripple.classList.add('click-ripple');
+            ripple.style.left = `${e.clientX}px`;
+            ripple.style.top = `${e.clientY}px`;
+            document.body.appendChild(ripple);
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+        // --- Smart Micro-interactions ---
+        const hoverables = document.querySelectorAll('a, button, .cursor-pointer, .glass-card-interactive, input, textarea, .method-card');
+        hoverables.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                document.body.classList.add('is-hovering');
+            });
+            el.addEventListener('mouseleave', () => {
+                document.body.classList.remove('is-hovering');
+            });
+        });
+    });
+</script>
+<footer class="border-t border-[#232f48] bg-[#0a0e17] py-12 relative z-20">
+<div class="layout-container px-10 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2 text-gray-500">
+<span class="material-symbols-outlined text-[18px]"><img src="Sharpmind-Logo (1).svg" alt="SharpMind Labs" class="w-5 h-5"/></span>
+<span class="text-sm font-sans">© 2025 Shapmind Labs. All systems operational.</span>
+</div>
+<div class="flex gap-6">
+<a class="text-gray-500 hover:text-primary transition-colors text-sm font-medium" href="index2.html">Home</a>
+<a class="text-gray-500 hover:text-primary transition-colors text-sm font-medium" href="productoverview.html">Product</a>
+<a class="text-gray-500 hover:text-primary transition-colors text-sm font-medium" href="solution.html">Solutions</a>
+<a class="text-gray-500 hover:text-primary transition-colors text-sm font-medium" href="about.html">About</a>
+<a class="text-gray-500 hover:text-primary transition-colors text-sm font-medium" href="contact.html">Contact</a>
+</div>
+</div>
+</footer>
+</body></html>
