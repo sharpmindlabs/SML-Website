@@ -1,10 +1,10 @@
 # SML-Website
 
-Shapmind Labs official website - AI Software Product Company
+Sharpmind Labs official website - AI Software Product Company
 
 ## About
 
-Shapmind Labs develops cutting-edge AI software products that transform businesses. From intelligent automation to machine learning solutions, we build AI-powered applications that deliver measurable results and competitive advantages.
+Sharpmind Labs develops cutting-edge AI software products that transform businesses. From intelligent automation to machine learning solutions, we build AI-powered applications that deliver measurable results and competitive advantages.
 
 ## Project Structure
 ```
@@ -73,4 +73,4 @@ Push to main branch triggers automatic deployment:
 4. Production deployment
 
 ---
-© 2025 Shapmind Labs. All rights reserved.
+© 2025 Sharpmind Labs. All rights reserved.

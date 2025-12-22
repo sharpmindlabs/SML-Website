@@ -91,7 +91,7 @@ def api_contact():
     if missing:
         return jsonify({"ok": False, "error": f"Missing fields: {', '.join(missing)}"}), 400
 
-    subject = f"SharpMind Labs — New Contact: {full_name}"
+    subject = f"Sharpmind Labs — New Contact: {full_name}"
     body_lines = [
         "A new contact form submission was received:",
         "",
