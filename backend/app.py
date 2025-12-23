@@ -6,8 +6,12 @@ from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from dotenv import load_dotenv
 
-# Load environment variables from .env if present
-load_dotenv()
+# Load environment variables from project root .env first, then local fallback
+ROOT_ENV = Path(__file__).resolve().parents[1] / ".env"
+if ROOT_ENV.exists():
+    load_dotenv(dotenv_path=ROOT_ENV, override=False)
+# Also attempt local .env in backend/ if present
+load_dotenv(override=False)
 
 BASE_DIR = Path(__file__).parent.resolve()
 
@@ -25,7 +29,7 @@ SMTP_HOST = os.getenv("SMTP_HOST", "")
 SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
 SMTP_USER = os.getenv("SMTP_USER", "")
 SMTP_PASS = os.getenv("SMTP_PASS", "")
-RECIPIENT_EMAIL = os.getenv("RECIPIENT_EMAIL", "velusamynakul@gmail.com")
+RECIPIENT_EMAIL = os.getenv("RECIPIENT_EMAIL", "nakulvelusamyperumalgounder@gmail.com")
 SENDER_EMAIL = os.getenv("SENDER_EMAIL", SMTP_USER)
 DISABLE_EMAIL = os.getenv("DISABLE_EMAIL", "").lower()
 
@@ -54,8 +58,16 @@ def send_email(subject: str, body: str) -> None:
     msg.set_content(body)
 
     with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
+        # Be explicit with EHLO to avoid TLS/auth quirks
+        server.ehlo()
         server.starttls()
-        server.login(SMTP_USER, SMTP_PASS)
+        server.ehlo()
+        try:
+            server.login(SMTP_USER, SMTP_PASS)
+        except smtplib.SMTPAuthenticationError as auth_err:
+            raise RuntimeError(
+                "SMTP authentication failed. For Gmail, ensure 2-Step Verification is enabled and use a 16-character App Password for SMTP. Verify that SMTP_USER matches the same Gmail account and that the app password is correct."
+            ) from auth_err
         server.send_message(msg)
 
 

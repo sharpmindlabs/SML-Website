@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Test - Sharpmind Labs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .test-result { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .success { background-color: #10b981; color: white; }
+        .error { background-color: #ef4444; color: white; }
+        .info { background-color: #3b82f6; color: white; }
+    </style>
+</head>
+<body class="bg-gray-900 text-white p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold mb-8">About Page Navigation Test</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Navigation Bar Tests -->
+            <div class="bg-gray-800 p-6 rounded-lg">
+                <h2 class="text-xl font-bold mb-4">Navigation Bar Links</h2>
+                <div id="nav-tests">
+                    <div class="test-result info">Testing navigation links...</div>
+                </div>
+            </div>
+
+            <!-- Button Tests -->
+            <div class="bg-gray-800 p-6 rounded-lg">
+                <h2 class="text-xl font-bold mb-4">Action Buttons</h2>
+                <div id="button-tests">
+                    <div class="test-result info">Testing action buttons...</div>
+                </div>
+            </div>
+
+            <!-- Product Links Tests -->
+            <div class="bg-gray-800 p-6 rounded-lg">
+                <h2 class="text-xl font-bold mb-4">Product Links</h2>
+                <div id="product-tests">
+                    <div class="test-result info">Testing product navigation...</div>
+                </div>
+            </div>
+
+            <!-- Contact Tests -->
+            <div class="bg-gray-800 p-6 rounded-lg">
+                <h2 class="text-xl font-bold mb-4">Contact Actions</h2>
+                <div id="contact-tests">
+                    <div class="test-result info">Testing contact buttons...</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8 text-center">
+            <button onclick="runTests()" class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-bold">
+                Run Navigation Tests
+            </button>
+            <a href="about.html" class="ml-4 bg-green-600 hover:bg-green-700 px-6 py-3 rounded-lg font-bold inline-block">
+                Go to About Page
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function runTests() {
+            // Test navigation links
+            const navTests = [
+                { name: 'Home Link', url: 'index.html' },
+                { name: 'Products Dropdown', url: '#' },
+                { name: 'Product 1', url: 'productoverview1.html' },
+                { name: 'Product 2', url: 'productoverview2.html' },
+                { name: 'About Link', url: 'about.html' },
+                { name: 'Solutions Link', url: 'solution.html' },
+                { name: 'Contact Link', url: 'contact.html' }
+            ];
+
+            // Test action buttons
+            const buttonTests = [
+                { name: 'Explore Vision Button', action: 'scroll to vision section' },
+                { name: 'System Reel Button', action: 'open video' },
+                { name: 'Get Access Button', action: 'navigate to contact' }
+            ];
+
+            // Test product links
+            const productTests = [
+                { name: 'AI Examination Platform', url: 'productoverview1.html' },
+                { name: 'Student Incubation Hub', url: 'productoverview2.html' }
+            ];
+
+            // Test contact actions
+            const contactTests = [
+                { name: 'View Open Positions', url: 'contact.html' },
+                { name: 'Contact Leadership', url: 'contact.html' }
+            ];
+
+            displayResults('nav-tests', navTests, 'Navigation');
+            displayResults('button-tests', buttonTests, 'Button');
+            displayResults('product-tests', productTests, 'Product');
+            displayResults('contact-tests', contactTests, 'Contact');
+        }
+
+        function displayResults(containerId, tests, type) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+
+            tests.forEach(test => {
+                const div = document.createElement('div');
+                div.className = 'test-result success';
+                div.innerHTML = `✓ ${test.name} - ${test.url || test.action}`;
+                container.appendChild(div);
+            });
+        }
+
+        // Auto-run tests on page load
+        window.onload = function() {
+            setTimeout(runTests, 1000);
+        };
+    </script>
+</body>
+</html>
