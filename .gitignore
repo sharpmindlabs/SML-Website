@@ -39,7 +39,7 @@ yarn-error.log*
 *.swo
 *~
 
-# OS
+# OSs
 .DS_Store
 .DS_Store?
 ._*
