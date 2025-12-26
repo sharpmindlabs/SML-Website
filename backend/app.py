@@ -47,6 +47,7 @@ SMTP_PASS = os.getenv("SMTP_PASS", "")
 RECIPIENT_EMAIL = os.getenv("RECIPIENT_EMAIL", "nakulvelusamyperumalgounder@gmail.com")
 SENDER_EMAIL = os.getenv("SENDER_EMAIL", SMTP_USER)
 DISABLE_EMAIL = os.getenv("DISABLE_EMAIL", "1").strip().lower()
+SMTP_SSL = os.getenv("SMTP_SSL", "").strip().lower()
 
 # Normalize common formatting issues (especially with Gmail App Passwords)
 SMTP_USER = SMTP_USER.strip()
@@ -76,16 +77,20 @@ def send_email(subject: str, body: str) -> None:
     msg["Subject"] = subject
     msg.set_content(body)
 
-    with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
+    use_ssl = SMTP_SSL in ("1", "true", "yes") or SMTP_PORT == 465
+    smtp_cls = smtplib.SMTP_SSL if use_ssl else smtplib.SMTP
+
+    with smtp_cls(SMTP_HOST, SMTP_PORT) as server:
         # Be explicit with EHLO to avoid TLS/auth quirks
         server.ehlo()
-        server.starttls()
-        server.ehlo()
+        if not use_ssl:
+            server.starttls()
+            server.ehlo()
         try:
             server.login(SMTP_USER, SMTP_PASS)
         except smtplib.SMTPAuthenticationError as auth_err:
             raise RuntimeError(
-                "SMTP authentication failed. For Gmail, ensure 2-Step Verification is enabled and use a 16-character App Password for SMTP. Verify that SMTP_USER matches the same Gmail account and that the app password is correct."
+                "SMTP authentication failed. For Gmail: (1) 2-Step Verification must be ON, (2) use a 16-character App Password (not your normal password), (3) SMTP_USER must be the same Gmail account the App Password was created for."
             ) from auth_err
         server.send_message(msg)
 
