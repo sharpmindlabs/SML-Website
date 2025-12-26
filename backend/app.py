@@ -46,7 +46,11 @@ SMTP_USER = os.getenv("SMTP_USER", "")
 SMTP_PASS = os.getenv("SMTP_PASS", "")
 RECIPIENT_EMAIL = os.getenv("RECIPIENT_EMAIL", "nakulvelusamyperumalgounder@gmail.com")
 SENDER_EMAIL = os.getenv("SENDER_EMAIL", SMTP_USER)
-DISABLE_EMAIL = os.getenv("DISABLE_EMAIL", "").lower()
+DISABLE_EMAIL = os.getenv("DISABLE_EMAIL", "1").strip().lower()
+
+# Normalize common formatting issues (especially with Gmail App Passwords)
+SMTP_USER = SMTP_USER.strip()
+SMTP_PASS = "".join(SMTP_PASS.split())
 
 
 def send_email(subject: str, body: str) -> None:
