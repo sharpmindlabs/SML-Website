@@ -60,7 +60,7 @@ sudo certbot certonly --standalone -d dev.sharpmindlabs.com
 docker compose -f docker-compose.yml -f docker-compose.ssl.yml up -d --build
 ```
 
-When running with the SSL overlay, HTTP (`:80`) redirects to HTTPS (`:443`).
+When running with the SSL overlay, the site is HTTPS-only (`:443`). Port `80` is not exposed.
 
 If you already have a cert but installation failed, just run:
 ```bash
