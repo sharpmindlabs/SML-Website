@@ -69,6 +69,10 @@ Notes (Gmail):
 - Use a Gmail "App Password" (requires 2-Step Verification). Your normal Gmail password usually will not work for SMTP.
 - Keep `SMTP_USER` and the App Password from the same Gmail account.
 
+Docker / CI note:
+- `docker-compose.yml` treats `.env` as optional (so CI/CD won't fail if it's not present).
+- To enable real email sending in production, provide `SMTP_*` and set `DISABLE_EMAIL=0` via a `.env` on the server or via your deployment secrets.
+
 ## Deployment
 Push to main branch triggers automatic deployment:
 1. Tests run

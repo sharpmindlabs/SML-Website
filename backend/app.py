@@ -51,8 +51,8 @@ DISABLE_EMAIL = os.getenv("DISABLE_EMAIL", "").lower()
 
 def send_email(subject: str, body: str) -> None:
     # Dev mode: allow local testing without SMTP
-    if DISABLE_EMAIL in ("1", "true", "yes"):  # no-op in dev
-        return
+    if DISABLE_EMAIL in ("1", "true", "yes"):
+        raise RuntimeError("Email sending is disabled (DISABLE_EMAIL=1).")
     missing = [
         name for name, val in (
             ("SMTP_HOST", SMTP_HOST),
@@ -140,9 +140,12 @@ def api_contact():
 
     try:
         send_email(subject, body)
-        return jsonify({"ok": True, "message": "Submission sent successfully."})
+        app.logger.info("Contact email sent", extra={"to": RECIPIENT_EMAIL})
+        return jsonify({"ok": True, "sent": True, "message": "Submission emailed successfully."})
     except Exception as e:
-        return jsonify({"ok": False, "error": str(e)}), 500
+        # Make this user-visible so misconfiguration doesn't look like success.
+        app.logger.exception("Contact email failed")
+        return jsonify({"ok": False, "sent": False, "error": str(e)}), 500
 
 @app.route('/api/health')
 def health_check():
