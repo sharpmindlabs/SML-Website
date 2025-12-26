@@ -50,16 +50,19 @@ jobs:
     - name: Deploy to production
       env:
         VM_HOST: ${{ secrets.VM_HOST }}
+        VM_IP: ${{ secrets.VM_IP }}
         VM_USER: ${{ secrets.VM_USER }}
         VM_SSH_PORT: ${{ secrets.VM_SSH_PORT }}
         VM_PATH: ${{ secrets.VM_PATH }}
       run: |
         echo "Preparing SSH deployment to VM..."
-        if [ -z "${VM_HOST}" ] || [ -z "${VM_USER}" ] || [ -z "${VM_PATH}" ]; then
-          echo "Missing required secrets: VM_HOST, VM_USER, VM_PATH" >&2
+        HOST_OR_IP="${VM_HOST:-${VM_IP:-}}"
+        DEPLOY_PATH="${VM_PATH:-/home/${VM_USER}/SML-Website}"
+        if [ -z "${HOST_OR_IP}" ] || [ -z "${VM_USER}" ]; then
+          echo "Missing required secrets: VM_USER and (VM_HOST or VM_IP)" >&2
           exit 1
         fi
-        echo "Secrets present. SSH deploy step will run after ssh-agent setup."
+        echo "Target: ${VM_USER}@${HOST_OR_IP}:${DEPLOY_PATH}"
 
     - name: Set up SSH agent
       uses: webfactory/ssh-agent@v0.9.0
@@ -69,24 +72,29 @@ jobs:
     - name: Add VM to known_hosts
       env:
         VM_HOST: ${{ secrets.VM_HOST }}
+        VM_IP: ${{ secrets.VM_IP }}
         VM_SSH_PORT: ${{ secrets.VM_SSH_PORT }}
       run: |
         mkdir -p ~/.ssh
         PORT=${VM_SSH_PORT:-22}
-        ssh-keyscan -p "$PORT" -H "$VM_HOST" >> ~/.ssh/known_hosts
+        HOST_OR_IP="${VM_HOST:-${VM_IP:-}}"
+        ssh-keyscan -p "$PORT" -H "$HOST_OR_IP" >> ~/.ssh/known_hosts
 
     - name: Deploy on VM (git pull + docker compose)
       env:
         VM_HOST: ${{ secrets.VM_HOST }}
+        VM_IP: ${{ secrets.VM_IP }}
         VM_USER: ${{ secrets.VM_USER }}
         VM_SSH_PORT: ${{ secrets.VM_SSH_PORT }}
         VM_PATH: ${{ secrets.VM_PATH }}
       run: |
         PORT=${VM_SSH_PORT:-22}
-        echo "Deploying to ${VM_USER}@${VM_HOST}:${VM_PATH}"
-        ssh -p "$PORT" "${VM_USER}@${VM_HOST}" << 'EOF'
+        HOST_OR_IP="${VM_HOST:-${VM_IP:-}}"
+        DEPLOY_PATH="${VM_PATH:-/home/${VM_USER}/SML-Website}"
+        echo "Deploying to ${VM_USER}@${HOST_OR_IP}:${DEPLOY_PATH}"
+        ssh -p "$PORT" "${VM_USER}@${HOST_OR_IP}" << EOF
         set -euo pipefail
-        cd "${VM_PATH}"
+        cd "${DEPLOY_PATH}"
         git fetch --all
         git reset --hard origin/main
         docker compose down || true
