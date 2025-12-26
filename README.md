@@ -41,6 +41,32 @@ docker compose up -d
 curl http://localhost/healthz
 ```
 
+### HTTPS with Let's Encrypt (Docker Nginx)
+
+If you run Nginx inside Docker (this repo does), the host port `80` is already in use by the container. The Certbot `--nginx` installer tries to restart the *system* nginx on the host and will fail with bind-to-80 errors.
+
+Recommended approach:
+1) Stop Docker briefly, obtain/renew cert using standalone mode:
+```bash
+cd ~/SML-Website
+docker compose down
+
+# Obtain or renew
+sudo certbot certonly --standalone -d dev.sharpmindlabs.com
+```
+
+2) Start the stack with SSL enabled (expects certs at `/etc/letsencrypt` on the host):
+```bash
+docker compose -f docker-compose.yml -f docker-compose.ssl.yml up -d --build
+```
+
+When running with the SSL overlay, HTTP (`:80`) redirects to HTTPS (`:443`).
+
+If you already have a cert but installation failed, just run:
+```bash
+sudo certbot renew --standalone
+```
+
 ## URLs
 - Home: http://localhost/
 - API Health: http://localhost/api/health

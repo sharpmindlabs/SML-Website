@@ -1,0 +1,12 @@
+# Use with: docker compose -f docker-compose.yml -f docker-compose.ssl.yml up -d --build
+# Expects Let's Encrypt certs on the host at /etc/letsencrypt for your domain.
+
+services:
+  nginx:
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.ssl.conf:/etc/nginx/nginx.conf:ro
+      - ./frontend:/usr/share/nginx/html:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
