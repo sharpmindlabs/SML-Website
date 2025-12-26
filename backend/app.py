@@ -6,19 +6,34 @@ from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from dotenv import load_dotenv
 
-# Load environment variables from project root .env first, then local fallback
-ROOT_ENV = Path(__file__).resolve().parents[1] / ".env"
-if ROOT_ENV.exists():
-    load_dotenv(dotenv_path=ROOT_ENV, override=False)
-# Also attempt local .env in backend/ if present
-load_dotenv(override=False)
-
+# Load environment variables from .env (best-effort).
+# We try a few sensible locations to support both local runs and containers.
 BASE_DIR = Path(__file__).parent.resolve()
+ENV_CANDIDATES = [
+    BASE_DIR.parent / ".env",
+    Path.cwd() / ".env",
+    BASE_DIR / ".env",
+]
+for env_path in ENV_CANDIDATES:
+    if env_path.exists():
+        load_dotenv(dotenv_path=env_path, override=False)
+        break
 
-# Serve static files from frontend directory
-app = Flask(__name__)
-app.static_folder = os.path.join(os.path.dirname(__file__), '..', 'frontend')
-app.static_url_path = ''
+# Serve static files from frontend directory (best-effort; nginx serves frontend in Docker).
+FRONTEND_DIR_CANDIDATES = [
+    BASE_DIR.parent / "frontend",  # repo layout: <root>/backend/app.py
+    Path("/app/frontend"),         # docker-compose volume mount
+]
+
+static_dir = None
+for candidate in FRONTEND_DIR_CANDIDATES:
+    if candidate.exists():
+        static_dir = str(candidate.resolve())
+        break
+if static_dir is None:
+    static_dir = str((BASE_DIR.parent / "frontend").resolve())
+
+app = Flask(__name__, static_folder=static_dir, static_url_path="")
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 # Company address (as requested)
@@ -91,6 +106,10 @@ def api_contact():
     organization = data.get("organization", "").strip()
     inquiry_type = data.get("inquiry_type", "").strip()
     message = data.get("message", "").strip()
+
+    # Frontend default placeholder; treat it as not-provided.
+    if inquiry_type.lower() in ("select topic", "select", "-", "none"):
+        inquiry_type = ""
 
     # Basic validation
     missing = [

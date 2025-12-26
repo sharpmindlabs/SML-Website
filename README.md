@@ -60,10 +60,14 @@ Automated deployment via GitHub Actions on push to main branch.
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
 SMTP_USER=your-email@gmail.com
-SMTP_PASS=your-password
+SMTP_PASS=your-gmail-app-password
 RECIPIENT_EMAIL=contact@sharpmindlabs.com
-DISABLE_EMAIL=1  # For local development
+DISABLE_EMAIL=1  # Set to 0 to enable sending
 ```
+
+Notes (Gmail):
+- Use a Gmail "App Password" (requires 2-Step Verification). Your normal Gmail password usually will not work for SMTP.
+- Keep `SMTP_USER` and the App Password from the same Gmail account.
 
 ## Deployment
 Push to main branch triggers automatic deployment:
