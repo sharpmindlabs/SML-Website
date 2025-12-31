@@ -1,10 +1,10 @@
 (() => {
   const overlay = document.getElementById('mobileSidebarOverlay');
   const sidebar = document.getElementById('mobileSidebar');
-  const openBtn = document.querySelector('[data-sidebar-open]');
+  const openBtns = Array.from(document.querySelectorAll('[data-sidebar-open]'));
   const closeBtns = document.querySelectorAll('[data-sidebar-close]');
 
-  if (!overlay || !sidebar || !openBtn) return;
+  if (!overlay || !sidebar || openBtns.length === 0) return;
 
   const focusableSelector = [
     'a[href]',
@@ -16,12 +16,13 @@
   ].join(',');
 
   let lastActiveElement = null;
+  let lastOpenBtn = null;
 
   const show = (el) => el.classList.remove('hidden');
   const hide = (el) => el.classList.add('hidden');
 
   const setOpenState = (isOpen) => {
-    openBtn.setAttribute('aria-expanded', String(isOpen));
+    openBtns.forEach((btn) => btn.setAttribute('aria-expanded', String(isOpen)));
 
     if (isOpen) {
       lastActiveElement = document.activeElement;
@@ -40,14 +41,22 @@
 
       if (lastActiveElement && typeof lastActiveElement.focus === 'function') {
         lastActiveElement.focus();
+      } else if (lastOpenBtn && typeof lastOpenBtn.focus === 'function') {
+        lastOpenBtn.focus();
       }
       lastActiveElement = null;
+      lastOpenBtn = null;
     }
   };
 
   const isOpen = () => !sidebar.classList.contains('hidden');
 
-  openBtn.addEventListener('click', () => setOpenState(true));
+  openBtns.forEach((btn) =>
+    btn.addEventListener('click', () => {
+      lastOpenBtn = btn;
+      setOpenState(true);
+    })
+  );
 
   closeBtns.forEach((btn) => btn.addEventListener('click', () => setOpenState(false)));
 
