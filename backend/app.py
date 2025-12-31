@@ -5,6 +5,7 @@ from pathlib import Path
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from dotenv import load_dotenv
+from typing import Any
 
 # Load environment variables from .env (best-effort).
 # We try a few sensible locations to support both local runs and containers.
@@ -77,22 +78,60 @@ def send_email(subject: str, body: str) -> None:
     msg["Subject"] = subject
     msg.set_content(body)
 
-    use_ssl = SMTP_SSL in ("1", "true", "yes") or SMTP_PORT == 465
-    smtp_cls = smtplib.SMTP_SSL if use_ssl else smtplib.SMTP
-
-    with smtp_cls(SMTP_HOST, SMTP_PORT) as server:
-        # Be explicit with EHLO to avoid TLS/auth quirks
-        server.ehlo()
-        if not use_ssl:
-            server.starttls()
-            server.ehlo()
+    def _auth_details(err: smtplib.SMTPAuthenticationError) -> str:
         try:
-            server.login(SMTP_USER, SMTP_PASS)
+            raw = err.smtp_error
+            if isinstance(raw, bytes):
+                raw_text = raw.decode("utf-8", errors="replace")
+            else:
+                raw_text = str(raw)
+        except Exception:
+            raw_text = ""
+        code = getattr(err, "smtp_code", None)
+        if code is None:
+            return raw_text.strip() or "authentication failed"
+        return f"{code} {raw_text.strip()}".strip()
+
+    # Primary attempt uses configured transport.
+    primary_use_ssl = SMTP_SSL in ("1", "true", "yes") or SMTP_PORT == 465
+
+    attempts: list[dict[str, Any]] = [
+        {"use_ssl": primary_use_ssl, "port": SMTP_PORT, "label": "configured"},
+    ]
+
+    # Gmail fallback: some environments work better with SSL/465.
+    # This won't fix a wrong password, but helps when STARTTLS/587 is blocked/quirky.
+    if SMTP_HOST.lower().strip() == "smtp.gmail.com" and not primary_use_ssl and SMTP_PORT == 587:
+        attempts.append({"use_ssl": True, "port": 465, "label": "gmail_fallback_ssl_465"})
+
+    errors: list[str] = []
+    for attempt in attempts:
+        use_ssl = bool(attempt["use_ssl"])
+        port = int(attempt["port"])
+        label = str(attempt["label"])
+        smtp_cls = smtplib.SMTP_SSL if use_ssl else smtplib.SMTP
+
+        try:
+            with smtp_cls(SMTP_HOST, port, timeout=20) as server:
+                server.ehlo()
+                if not use_ssl:
+                    server.starttls()
+                    server.ehlo()
+                server.login(SMTP_USER, SMTP_PASS)
+                server.send_message(msg)
+                return
         except smtplib.SMTPAuthenticationError as auth_err:
-            raise RuntimeError(
-                "SMTP authentication failed. For Gmail: (1) 2-Step Verification must be ON, (2) use a 16-character App Password (not your normal password), (3) SMTP_USER must be the same Gmail account the App Password was created for."
-            ) from auth_err
-        server.send_message(msg)
+            errors.append(f"{label}: {_auth_details(auth_err)}")
+        except Exception as err:
+            errors.append(f"{label}: {type(err).__name__}: {err}")
+
+    details = "; ".join(errors) if errors else "unknown error"
+    raise RuntimeError(
+        "SMTP authentication failed. "
+        "For Gmail: (1) 2-Step Verification must be ON, (2) use a 16-character App Password, "
+        "(3) SMTP_USER must match the account that created the App Password. "
+        f"Details: {details}"
+    )
 
 
 @app.route('/')
